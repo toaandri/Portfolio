@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { LanguageStat } from "../lib/github";
+import { Reveal } from "./Reveal";
 
 interface LanguagesProps {
   languages: LanguageStat[];
@@ -17,17 +18,21 @@ export function Languages({ languages }: LanguagesProps) {
   return (
     <section className="section" id="languages">
       <div className="container">
-        <h2 className="section-title">Languages</h2>
-        <p className="section-sub">
+        <Reveal as="div" className="eyebrow">
+          Stack
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>
+          Languages I write.
+        </Reveal>
+        <Reveal as="p" className="section-sub" delay={0.1}>
           Distribution across all non-fork repositories.
-        </p>
+        </Reveal>
 
         <div className="lang-bars">
           {languages.map((l, i) => (
             <div className="lang-bar-row" key={l.name}>
               <span className="lang-name">
                 <span
-                  className="lang-dot"
                   style={{
                     width: 10,
                     height: 10,
@@ -39,7 +44,6 @@ export function Languages({ languages }: LanguagesProps) {
               </span>
               <div className="lang-track">
                 <motion.div
-                  className="lang-fill"
                   style={{ background: l.color }}
                   initial={{ width: 0 }}
                   animate={{ width: mounted ? `${l.percentage}%` : 0 }}

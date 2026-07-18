@@ -27,11 +27,11 @@ export function RepoCard({ repo, index }: RepoCardProps) {
       target="_blank"
       rel="noreferrer"
       className="card card-hoverable repo-card"
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{
-        duration: 0.4,
+        duration: 0.45,
         ease: [0.23, 1, 0.32, 1],
         delay: Math.min(index * 0.05, 0.4),
       }}
@@ -50,9 +50,9 @@ export function RepoCard({ repo, index }: RepoCardProps) {
         {repo.description || "No description provided."}
       </p>
 
-      <div className="repo-langs">
+      <div className="repo-meta">
         {lang && (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <span>
             <span
               className="repo-lang-dot"
               style={{ background: getLanguageColor(lang) }}
@@ -60,14 +60,6 @@ export function RepoCard({ repo, index }: RepoCardProps) {
             {lang}
           </span>
         )}
-        {repo.topics.slice(0, 2).map((t) => (
-          <span key={t} style={{ color: "var(--accent)" }}>
-            #{t}
-          </span>
-        ))}
-      </div>
-
-      <div className="repo-foot">
         <span>
           <ForkIcon size={13} /> {repo.forks_count}
         </span>

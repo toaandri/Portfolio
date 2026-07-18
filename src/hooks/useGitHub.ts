@@ -1,19 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchGitHubData, type GitHubData } from "../lib/github";
 
-interface UseGitHubState {
-  data: GitHubData | null;
-  loading: boolean;
-  error: string | null;
-  progress: number;
-  lastUpdated: string | null;
-  refresh: () => void;
-  refetchOnVisible: boolean;
-}
-
 const AUTO_REFRESH_MS = 5 * 60 * 1000;
 
-export function useGitHub(): UseGitHubState {
+export function useGitHub() {
   const [data, setData] = useState<GitHubData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,6 +50,5 @@ export function useGitHub(): UseGitHubState {
     progress,
     lastUpdated: data?.lastUpdated ?? null,
     refresh: load,
-    refetchOnVisible: true,
   };
 }

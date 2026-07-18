@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { GitHubData } from "../lib/github";
+import { Reveal } from "./Reveal";
 
 interface AboutProps {
   data: GitHubData;
@@ -20,12 +21,17 @@ export function About({ data }: AboutProps) {
   return (
     <section className="section" id="about">
       <div className="container">
-        <h2 className="section-title">About</h2>
-        <p className="section-sub">
-          Who I am, and what I build with.
-        </p>
+        <Reveal as="div" className="eyebrow">
+          About
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>
+          Engineering with intent.
+        </Reveal>
+        <Reveal as="p" className="section-sub" delay={0.1}>
+          A snapshot of who I am and the tools I reach for.
+        </Reveal>
 
-        <div className="about-grid">
+        <div className="about-grid" style={{ marginTop: 48 }}>
           <motion.div
             className="about-text"
             initial={{ opacity: 0, y: 16 }}
@@ -43,16 +49,13 @@ export function About({ data }: AboutProps) {
               My work spans academic projects and real-world apps, including{" "}
               <strong>MITANEKO</strong> for the Orange Digital Center POESAM and
               a React-based dynamic web app. I'm constantly learning and pushing
-              my repos forward.
+              my craft forward.
             </p>
 
             <div className="skills">
               {topLangs.map((l) => (
                 <span key={l.name} className="skill-chip">
-                  <span
-                    className="lang-dot"
-                    style={{ background: l.color }}
-                  />
+                  <span className="lang-dot" style={{ background: l.color }} />
                   {l.name}
                 </span>
               ))}
@@ -62,15 +65,11 @@ export function About({ data }: AboutProps) {
 
           <motion.div
             className="card"
-            style={{ padding: 24 }}
+            style={{ padding: 28 }}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{
-              duration: 0.5,
-              ease: [0.23, 1, 0.32, 1],
-              delay: 0.08,
-            }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.08 }}
           >
             <div className="fact-list">
               <div className="fact">
@@ -91,9 +90,7 @@ export function About({ data }: AboutProps) {
               </div>
               <div className="fact">
                 <span className="fact-label">Top language</span>
-                <span className="fact-value">
-                  {topLangs[0]?.name || "—"}
-                </span>
+                <span className="fact-value">{topLangs[0]?.name || "—"}</span>
               </div>
             </div>
           </motion.div>

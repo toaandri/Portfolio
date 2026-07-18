@@ -3,41 +3,45 @@ import { ClockIcon } from "./icons";
 export function Skeleton() {
   return (
     <div className="container">
-      <div className="hero" style={{ paddingTop: 80 }}>
+      <div className="hero" style={{ paddingTop: 70 }}>
         <div className="hero-grid">
-          <div className="skeleton sk-avatar" />
           <div>
-            <div className="skeleton sk-line" style={{ width: 280, height: 36 }} />
+            <div className="skeleton sk-line" style={{ width: 220, height: 16 }} />
             <div
               className="skeleton sk-line"
-              style={{ width: 120, height: 16, marginTop: 12 }}
+              style={{ width: "90%", height: 64, marginTop: 22 }}
             />
             <div
               className="skeleton sk-line"
-              style={{ width: "100%", height: 16, marginTop: 20 }}
+              style={{ width: "70%", height: 16, marginTop: 20 }}
             />
             <div
               className="skeleton sk-line"
-              style={{ width: "80%", height: 16, marginTop: 10 }}
+              style={{ width: "100%", height: 16, marginTop: 14 }}
             />
-            <div style={{ display: "flex", gap: 28, marginTop: 28 }}>
+            <div
+              className="skeleton sk-line"
+              style={{ width: "60%", height: 16, marginTop: 10 }}
+            />
+            <div style={{ display: "flex", gap: 38, marginTop: 30 }}>
               {[0, 1, 2, 3].map((i) => (
-                <div key={i} style={{ width: 80 }}>
-                  <div className="skeleton sk-line" style={{ height: 24 }} />
+                <div key={i} style={{ width: 90 }}>
+                  <div className="skeleton sk-line" style={{ height: 30 }} />
                   <div
                     className="skeleton sk-line"
-                    style={{ height: 12, marginTop: 8, width: 60 }}
+                    style={{ height: 12, marginTop: 10, width: 64 }}
                   />
                 </div>
               ))}
             </div>
           </div>
+          <div className="skeleton sk-line" style={{ width: 176, height: 176, borderRadius: 28 }} />
         </div>
       </div>
 
       <div className="section">
-        <div className="skeleton sk-line" style={{ width: 160, height: 28 }} />
-        <div className="repo-grid" style={{ marginTop: 32 }}>
+        <div className="skeleton sk-line" style={{ width: 200, height: 40 }} />
+        <div className="repo-grid" style={{ marginTop: 40 }}>
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="skeleton sk-block" />
           ))}
@@ -59,8 +63,7 @@ export function LoadingBar({ progress }: LoadingBarProps) {
         top: 0,
         left: 0,
         right: 0,
-        height: 2,
-        background: "transparent",
+        height: 3,
         zIndex: 100,
       }}
     >
@@ -68,16 +71,16 @@ export function LoadingBar({ progress }: LoadingBarProps) {
         style={{
           height: "100%",
           width: `${progress}%`,
-          background: "var(--accent)",
+          background: "linear-gradient(90deg, var(--accent-deep), var(--accent-soft))",
           transition: "width 300ms var(--ease-out)",
-          boxShadow: "0 0 8px var(--accent)",
+          boxShadow: "0 0 10px var(--accent)",
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: 8,
-          right: 12,
+          top: 10,
+          right: 14,
           fontSize: 12,
           color: "var(--text-faint)",
           display: "inline-flex",

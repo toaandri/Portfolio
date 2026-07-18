@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { GitHubData } from "../lib/github";
 import { FacebookIcon, GitHubIcon, LinkedinIcon, StarIcon } from "./icons";
+import { MaskText } from "./Reveal";
 
 interface HeroProps {
   data: GitHubData;
@@ -18,20 +19,23 @@ const socials = [
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 12 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.23, 1, 0.32, 1] },
-  },
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.23, 1, 0.32, 1] } },
 };
+
+function splitName(name: string) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return { first: parts[0], rest: "" };
+  return { first: parts[0], rest: parts.slice(1).join(" ") };
+}
 
 export function Hero({ data }: HeroProps) {
   const { user, totalStars } = data;
+  const { first, rest } = splitName(user.name || user.login);
 
   return (
     <header className="hero" id="top">
@@ -42,26 +46,30 @@ export function Hero({ data }: HeroProps) {
           initial="hidden"
           animate="show"
         >
-          <motion.div variants={item} className="avatar-wrap">
-            <div className="avatar-ring" />
-            <img
-              className="avatar"
-              src={user.avatar_url}
-              alt={user.login}
-              loading="eager"
-            />
-          </motion.div>
-
           <div>
-            <motion.h1 variants={item} className="hero-name">
-              {user.name || user.login}
-            </motion.h1>
-            <motion.div variants={item} className="hero-handle">
-              @{user.login}
+            <motion.div variants={item} className="hero-kicker">
+              Software Engineering Student
             </motion.div>
+
+            <motion.h1 variants={item} className="hero-name">
+              <MaskText as="h1" text={first} delay={0.15} />
+              {rest && (
+                <span className="amber">
+                  {" "}
+                  <MaskText as="h1" text={rest} delay={0.28} />
+                </span>
+              )}
+            </motion.h1>
+
+            <motion.div variants={item} className="hero-handle">
+              @{user.login} · Madagascar
+            </motion.div>
+
             <motion.p variants={item} className="hero-bio">
-              {user.bio}
+              {user.bio ||
+                "I build practical web applications and explore new technologies, from full-stack TypeScript to Java and Python."}
             </motion.p>
+
             <motion.div variants={item} className="hero-actions">
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
@@ -77,31 +85,33 @@ export function Hero({ data }: HeroProps) {
             </motion.div>
 
             <motion.div variants={item} className="stat-row">
-              <div className="stat">
-                <span className="stat-value">
-                  {user.public_repos}
-                </span>
-                <span className="stat-label">Repositories</span>
+              <div>
+                <div className="stat-value">{user.public_repos}</div>
+                <div className="stat-label">Repositories</div>
               </div>
-              <div className="stat">
-                <span className="stat-value">{totalStars}</span>
-                <span className="stat-label">Stars earned</span>
+              <div>
+                <div className="stat-value">{totalStars}</div>
+                <div className="stat-label">Stars earned</div>
               </div>
-              <div className="stat">
-                <span className="stat-value">{user.followers}</span>
-                <span className="stat-label">Followers</span>
+              <div>
+                <div className="stat-value">{user.followers}</div>
+                <div className="stat-label">Followers</div>
               </div>
-              <div className="stat">
-                <span className="stat-value">{user.following}</span>
-                <span className="stat-label">Following</span>
+              <div>
+                <div className="stat-value">{user.following}</div>
+                <div className="stat-label">Following</div>
               </div>
             </motion.div>
           </div>
+
+          <motion.div variants={item} className="hero-avatar">
+            <img src={user.avatar_url} alt={user.login} loading="eager" />
+          </motion.div>
         </motion.div>
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 28, justifyContent: "flex-start" }}
+          style={{ marginTop: 36, justifyContent: "flex-start" }}
           variants={container}
           initial="hidden"
           animate="show"
@@ -124,8 +134,8 @@ export function Hero({ data }: HeroProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            style={{ marginTop: 16, color: "var(--text-faint)", fontSize: 13 }}
+            transition={{ delay: 0.7 }}
+            style={{ marginTop: 18, color: "var(--text-faint)", fontSize: 13 }}
           >
             <StarIcon size={14} /> {" "}Earned {totalStars} star
             {totalStars > 1 ? "s" : ""} across public repositories.

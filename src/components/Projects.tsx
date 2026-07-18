@@ -2,6 +2,7 @@ import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import type { GitHubRepo } from "../lib/github";
 import { RepoCard } from "./RepoCard";
+import { Reveal } from "./Reveal";
 
 interface ProjectsProps {
   repos: GitHubRepo[];
@@ -30,16 +31,22 @@ export function Projects({ repos }: ProjectsProps) {
   return (
     <section className="section" id="projects">
       <div className="container">
-        <h2 className="section-title">Projects</h2>
-        <p className="section-sub">
-          Live from GitHub — {repos.length} repositories, updated automatically.
-        </p>
+        <Reveal as="div" className="eyebrow">
+          Work
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>
+          Selected repositories.
+        </Reveal>
+        <Reveal as="p" className="section-sub" delay={0.1}>
+          Pulled live from GitHub — {repos.length} repositories, refreshed
+          automatically.
+        </Reveal>
 
         <div className="filter-tabs" role="tablist">
           <motion.span
             className="filter-pill"
             animate={{ left: pill.left, width: pill.width }}
-            transition={{ duration: 0.28, ease: [0.77, 0, 0.175, 1] }}
+            transition={{ duration: 0.3, ease: [0.77, 0, 0.175, 1] }}
           />
           {languages.map((lang, i) => (
             <button

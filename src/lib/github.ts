@@ -57,29 +57,28 @@ const LANGUAGE_COLORS: Record<string, string> = {
   PHP: "#4F5D95",
   HTML: "#e34c26",
   CSS: "#563d7c",
-  C: "#555555",
   "C++": "#f34b7d",
   Shell: "#89e051",
   Vue: "#41b883",
   Dart: "#00B4AB",
-  Kotlin: "#A97BFF",
   Go: "#00ADD8",
   Ruby: "#701516",
   Rust: "#dea584",
   Swift: "#F05138",
+  Kotlin: "#A97BFF",
+  C: "#555555",
 };
 
 export function getLanguageColor(name: string): string {
-  return LANGUAGE_COLORS[name] || "#8b949e";
+  return LANGUAGE_COLORS[name] || "#a8a29e";
 }
 
-async function fetchJSON<T>(url: string): Promise<T> {
+async function fetchJSON<T>(url: string, signal?: AbortSignal): Promise<T> {
   const res = await fetch(url, {
     headers: { Accept: "application/vnd.github+json" },
+    signal,
   });
-  if (!res.ok) {
-    throw new Error(`GitHub API ${res.status}: ${url}`);
-  }
+  if (!res.ok) throw new Error(`GitHub API ${res.status}`);
   return res.json() as Promise<T>;
 }
 
@@ -91,8 +90,7 @@ async function fetchLanguages(
   try {
     return await fetchJSON<Record<string, number>>(
       `https://api.github.com/repos/${owner}/${repo}/languages`,
-      // @ts-expect-error — fetch accepts signal in DOM lib
-      { signal }
+      signal
     );
   } catch {
     return {};
@@ -104,14 +102,17 @@ export async function fetchGitHubData(
   signal?: AbortSignal
 ): Promise<GitHubData> {
   const user = await fetchJSON<GitHubUser>(
-    `https://api.github.com/users/${USERNAME}`
+    `https://api.github.com/users/${USERNAME}`,
+    signal
   );
 
   const repos = await fetchJSON<GitHubRepo[]>(
-    `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`
+    `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`,
+    signal
   );
 
   const ranked = [...repos]
+    .filter((r) => !r.fork)
     .sort(
       (a, b) =>
         new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
@@ -125,9 +126,9 @@ export async function fetchGitHubData(
     const slice = ranked.slice(i, i + batchSize);
     const results = await Promise.all(
       slice.map((r) =>
-        fetchLanguages(USERNAME, r.name, signal).then((langs) => ({
+        fetchLanguages(USERNAME, r.name, signal).then((languages) => ({
           ...r,
-          languages: langs,
+          languages,
         }))
       )
     );

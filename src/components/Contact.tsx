@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
 import {
   FacebookIcon,
   GitHubIcon,
   LinkedinIcon,
   MailIcon,
 } from "./icons";
+import { Reveal } from "./Reveal";
 
 const links = [
   {
@@ -37,35 +37,31 @@ export function Contact() {
   return (
     <section className="section" id="contact">
       <div className="container">
-        <motion.div
-          className="card contact-card"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <h3>Let's build something together</h3>
-          <p>
-            I'm always open to collaborations, internships, and interesting
-            projects.
-          </p>
-          <div className="social-row">
-            {links.map(({ label, sub, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noreferrer"
-                className="social-link"
-              >
-                <Icon size={16} /> {label}
-                <span style={{ color: "var(--text-faint)", fontWeight: 500 }}>
-                  · {sub}
-                </span>
-              </a>
-            ))}
+        <Reveal>
+          <div className="card contact-card">
+            <h3>Let's build something together.</h3>
+            <p>
+              I'm open to collaborations, internships, and interesting projects.
+              Reach out anytime.
+            </p>
+            <div className="social-row">
+              {links.map(({ label, sub, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="social-link"
+                >
+                  <Icon size={16} /> {label}
+                  <span style={{ color: "var(--text-faint)", fontWeight: 500 }}>
+                    · {sub}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

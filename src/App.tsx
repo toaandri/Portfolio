@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGitHub } from "./hooks/useGitHub";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
@@ -34,13 +35,13 @@ function Footer({ updated }: { updated: string | null }) {
 }
 
 export default function App() {
+  useSmoothScroll();
   const { data, loading, error, progress, lastUpdated, refresh } = useGitHub();
 
   return (
     <>
       <Navbar onRefresh={refresh} refreshing={loading} />
       {loading && !data && <LoadingBar progress={progress} />}
-
       {loading && !data && <Skeleton />}
 
       {error && !data && (
