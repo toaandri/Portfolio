@@ -652,6 +652,62 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---------- Notes ---------- */
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.note-item {
+  padding: 26px 28px;
+}
+
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.note-tag {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+[data-theme="dark"] .note-tag {
+  color: var(--accent-soft);
+}
+
+.note-title {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.note-excerpt {
+  color: var(--text-soft);
+  font-size: 0.96rem;
+  max-width: 64ch;
+}
+
 /* ---------- Contact ---------- */
 .contact-card {
   padding: 64px 48px;

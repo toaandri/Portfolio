@@ -50,6 +50,9 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
             <a href="#languages" className="nav-link">
               Languages
             </a>
+            <a href="#notes" className="nav-link">
+              Notes
+            </a>
             <a href="#contact" className="nav-link">
               Contact
             </a>

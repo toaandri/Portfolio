@@ -6,6 +6,7 @@ import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Projects } from "./components/Projects";
 import { Languages } from "./components/Languages";
+import { Notes } from "./components/Notes";
 import { Contact } from "./components/Contact";
 import { Skeleton, LoadingBar } from "./components/Skeleton";
 import { GitHubIcon } from "./components/icons";
@@ -71,6 +72,7 @@ export default function App() {
           <About data={data} />
           <Projects repos={data.repos} />
           <Languages languages={data.languages} />
+          <Notes />
           <Contact />
           <Footer updated={lastUpdated} />
         </main>
