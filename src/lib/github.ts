@@ -48,6 +48,8 @@ export interface GitHubData {
 }
 
 const USERNAME = import.meta.env.VITE_GITHUB_USER || "toaandri";
+const CACHE_KEY = `github_cache_${USERNAME}`;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
@@ -71,6 +73,35 @@ const LANGUAGE_COLORS: Record<string, string> = {
 
 export function getLanguageColor(name: string): string {
   return LANGUAGE_COLORS[name] || "#a8a29e";
+}
+
+interface CacheEntry {
+  data: GitHubData;
+  timestamp: number;
+}
+
+function getCached(): GitHubData | null {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const entry: CacheEntry = JSON.parse(raw);
+    if (Date.now() - entry.timestamp > CACHE_TTL) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    return entry.data;
+  } catch {
+    return null;
+  }
+}
+
+function setCache(data: GitHubData): void {
+  try {
+    const entry: CacheEntry = { data, timestamp: Date.now() };
+    localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
+  } catch {
+    // localStorage full or blocked — ignore
+  }
 }
 
 async function fetchJSON<T>(url: string, signal?: AbortSignal): Promise<T> {
@@ -98,6 +129,22 @@ async function fetchLanguages(
 }
 
 export async function fetchGitHubData(
+  onProgress?: (loaded: number, total: number) => void,
+  signal?: AbortSignal
+): Promise<GitHubData> {
+  // Check cache first (stale-while-revalidate)
+  const cached = getCached();
+  if (cached) {
+    onProgress?.(1, 1);
+    // Revalidate in background
+    fetchFreshData(onProgress, signal).then(setCache).catch(() => {});
+    return cached;
+  }
+
+  return fetchFreshData(onProgress, signal);
+}
+
+async function fetchFreshData(
   onProgress?: (loaded: number, total: number) => void,
   signal?: AbortSignal
 ): Promise<GitHubData> {
@@ -156,11 +203,14 @@ export async function fetchGitHubData(
 
   const totalStars = enriched.reduce((s, r) => s + r.stargazers_count, 0);
 
-  return {
+  const data: GitHubData = {
     user,
     repos: enriched,
     languages,
     totalStars,
     lastUpdated: new Date().toISOString(),
   };
+
+  setCache(data);
+  return data;
 }

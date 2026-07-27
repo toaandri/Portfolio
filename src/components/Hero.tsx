@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import type { GitHubData } from "../lib/github";
 import { FacebookIcon, GitHubIcon, LinkedinIcon, StarIcon } from "./icons";
 import { MaskText } from "./Reveal";
+import styles from "./Hero.module.css";
 
 interface HeroProps {
   data: GitHubData;
@@ -38,44 +39,45 @@ export function Hero({ data }: HeroProps) {
   const { first, rest } = splitName(user.name || user.login);
 
   return (
-    <header className="hero" id="top">
+    <header className={styles.hero} id="top">
       <div className="container">
         <motion.div
-          className="hero-grid"
+          className={styles.grid}
           variants={container}
           initial="hidden"
           animate="show"
         >
           <div>
-            <motion.div variants={item} className="hero-kicker">
+            <motion.div variants={item} className={styles.kicker}>
               Software Engineering Student
             </motion.div>
 
-            <motion.h1 variants={item} className="hero-name">
+            <motion.h1 variants={item} className={styles.name}>
               <MaskText as="h1" text={first} delay={0.15} />
               {rest && (
-                <span className="amber">
+                <span className={styles.amber}>
                   {" "}
                   <MaskText as="h1" text={rest} delay={0.28} />
                 </span>
               )}
             </motion.h1>
 
-            <motion.div variants={item} className="hero-handle">
+            <motion.div variants={item} className={styles.handle}>
               @{user.login} · Madagascar
             </motion.div>
 
-            <motion.p variants={item} className="hero-bio">
+            <motion.p variants={item} className={styles.bio}>
               {user.bio ||
                 "I build practical web applications and explore new technologies, from full-stack TypeScript to Java and Python."}
             </motion.p>
 
-            <motion.div variants={item} className="hero-actions">
+            <motion.div variants={item} className={styles.actions}>
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="View GitHub repositories"
               >
                 <GitHubIcon size={16} /> View repositories
               </a>
@@ -84,34 +86,35 @@ export function Hero({ data }: HeroProps) {
               </a>
             </motion.div>
 
-            <motion.div variants={item} className="stat-row">
+            <motion.div variants={item} className={styles.statRow}>
               <div>
-                <div className="stat-value">{user.public_repos}</div>
-                <div className="stat-label">Repositories</div>
+                <div className={styles.statValue}>{user.public_repos}</div>
+                <div className={styles.statLabel}>Repositories</div>
               </div>
               <div>
-                <div className="stat-value">{totalStars}</div>
-                <div className="stat-label">Stars earned</div>
+                <div className={styles.statValue}>{totalStars}</div>
+                <div className={styles.statLabel}>Stars earned</div>
               </div>
               <div>
-                <div className="stat-value">{user.followers}</div>
-                <div className="stat-label">Followers</div>
+                <div className={styles.statValue}>{user.followers}</div>
+                <div className={styles.statLabel}>Followers</div>
               </div>
               <div>
-                <div className="stat-value">{user.following}</div>
-                <div className="stat-label">Following</div>
+                <div className={styles.statValue}>{user.following}</div>
+                <div className={styles.statLabel}>Following</div>
               </div>
             </motion.div>
           </div>
 
-          <motion.div variants={item} className="hero-avatar">
+          <motion.div variants={item} className={styles.avatar}>
             <img src={user.avatar_url} alt={user.login} loading="eager" />
+            <span className={styles.avatarRing} aria-hidden="true" />
           </motion.div>
         </motion.div>
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 36, justifyContent: "flex-start" }}
+          style={{ marginTop: 40, justifyContent: "flex-start" }}
           variants={container}
           initial="hidden"
           animate="show"
@@ -124,6 +127,7 @@ export function Hero({ data }: HeroProps) {
               target="_blank"
               rel="noreferrer"
               className="social-link"
+              aria-label={`Visit ${label} profile`}
             >
               <Icon size={16} /> {label}
             </motion.a>
@@ -137,7 +141,7 @@ export function Hero({ data }: HeroProps) {
             transition={{ delay: 0.7 }}
             style={{ marginTop: 18, color: "var(--text-faint)", fontSize: 13 }}
           >
-            <StarIcon size={14} /> {" "}Earned {totalStars} star
+            <StarIcon size={14} /> Earned {totalStars} star
             {totalStars > 1 ? "s" : ""} across public repositories.
           </motion.div>
         )}

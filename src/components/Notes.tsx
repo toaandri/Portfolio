@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 import { notes } from "../lib/notes";
+import styles from "./Notes.module.css";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -19,24 +20,24 @@ export function Notes() {
           Notes
         </Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>
-          Writing & things I'm learning.
+          Writing & things I&apos;m learning.
         </Reveal>
         <Reveal as="p" className="section-sub" delay={0.1}>
           Occasional notes on code, careers, and the stuff I pick up along the way.
         </Reveal>
 
-        <div className="note-list">
+        <div className={styles.list}>
           {sorted.map((note, i) => (
             <Reveal key={note.slug} delay={0.05 * i} as="div">
-              <article className="card card-hoverable note-item">
-                <div className="note-meta">
-                  <time className="note-date" dateTime={note.date}>
+              <article className={`card card-hoverable ${styles.item}`}>
+                <div className={styles.meta}>
+                  <time className={styles.date} dateTime={note.date}>
                     {formatDate(note.date)}
                   </time>
-                  <span className="note-tag">{note.tag}</span>
+                  <span className={styles.tag}>{note.tag}</span>
                 </div>
-                <h3 className="note-title">{note.title}</h3>
-                <p className="note-excerpt">{note.excerpt}</p>
+                <h3 className={styles.title}>{note.title}</h3>
+                <p className={styles.excerpt}>{note.excerpt}</p>
               </article>
             </Reveal>
           ))}

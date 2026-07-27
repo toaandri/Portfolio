@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import type { GitHubRepo } from "../lib/github";
 import { RepoCard } from "./RepoCard";
 import { Reveal } from "./Reveal";
+import styles from "./Projects.module.css";
 
 interface ProjectsProps {
   repos: GitHubRepo[];
@@ -42,9 +43,9 @@ export function Projects({ repos }: ProjectsProps) {
           automatically.
         </Reveal>
 
-        <div className="filter-tabs" role="tablist">
+        <div className={styles.filterTabs} role="tablist" aria-label="Filter repositories by language">
           <motion.span
-            className="filter-pill"
+            className={styles.pill}
             animate={{ left: pill.left, width: pill.width }}
             transition={{ duration: 0.3, ease: [0.77, 0, 0.175, 1] }}
           />
@@ -52,7 +53,7 @@ export function Projects({ repos }: ProjectsProps) {
             <button
               key={lang}
               ref={(el) => (tabRefs.current[i] = el)}
-              className="filter-tab"
+              className={styles.tab}
               data-active={active === lang}
               onClick={() => setActive(lang)}
               role="tab"
@@ -63,7 +64,7 @@ export function Projects({ repos }: ProjectsProps) {
           ))}
         </div>
 
-        <div className="repo-grid" key={active}>
+        <div className={styles.grid} key={active}>
           {filtered.map((repo, i) => (
             <RepoCard key={repo.id} repo={repo} index={i} />
           ))}

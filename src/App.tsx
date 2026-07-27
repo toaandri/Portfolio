@@ -10,6 +10,7 @@ import { Notes } from "./components/Notes";
 import { Contact } from "./components/Contact";
 import { Skeleton, LoadingBar } from "./components/Skeleton";
 import { GitHubIcon } from "./components/icons";
+import styles from "./components/Footer.module.css";
 
 function Footer({ updated }: { updated: string | null }) {
   const [now, setNow] = useState(Date.now());
@@ -26,9 +27,9 @@ function Footer({ updated }: { updated: string | null }) {
     : "—";
 
   return (
-    <footer className="footer container">
+    <footer className={`container ${styles.footer}`}>
       <span>© {new Date(now).getFullYear()} toaandri · Built with React</span>
-      <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+      <span className={styles.syncInfo}>
         <GitHubIcon size={13} /> Synced {when}
       </span>
     </footer>
@@ -40,7 +41,11 @@ export default function App() {
   const { data, loading, error, progress, lastUpdated, refresh } = useGitHub();
 
   return (
-    <>
+    <div className="grain">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+
       <Navbar onRefresh={refresh} refreshing={loading} />
       {loading && !data && <LoadingBar progress={progress} />}
       {loading && !data && <Skeleton />}
@@ -49,7 +54,7 @@ export default function App() {
         <div className="container" style={{ padding: "120px 0" }}>
           <div className="error-banner">
             <h2 style={{ marginBottom: 12 }}>
-              <strong>Couldn't reach GitHub</strong>
+              <strong>Couldn&apos;t reach GitHub</strong>
             </h2>
             <p>{error}</p>
             <p style={{ marginTop: 12, fontSize: 14 }}>
@@ -67,7 +72,7 @@ export default function App() {
       )}
 
       {data && (
-        <main>
+        <main id="main-content">
           <Hero data={data} />
           <About data={data} />
           <Projects repos={data.repos} />
@@ -77,6 +82,6 @@ export default function App() {
           <Footer updated={lastUpdated} />
         </main>
       )}
-    </>
+    </div>
   );
 }

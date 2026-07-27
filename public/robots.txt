@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toaandri.dev/sitemap.xml

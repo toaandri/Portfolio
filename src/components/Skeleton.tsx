@@ -3,7 +3,7 @@ import { ClockIcon } from "./icons";
 export function Skeleton() {
   return (
     <div className="container">
-      <div className="hero" style={{ paddingTop: 70 }}>
+      <div className="hero" style={{ paddingTop: 80 }}>
         <div className="hero-grid">
           <div>
             <div className="skeleton sk-line" style={{ width: 220, height: 16 }} />
@@ -23,7 +23,7 @@ export function Skeleton() {
               className="skeleton sk-line"
               style={{ width: "60%", height: 16, marginTop: 10 }}
             />
-            <div style={{ display: "flex", gap: 38, marginTop: 30 }}>
+            <div style={{ display: "flex", gap: 40, marginTop: 32 }}>
               {[0, 1, 2, 3].map((i) => (
                 <div key={i} style={{ width: 90 }}>
                   <div className="skeleton sk-line" style={{ height: 30 }} />
@@ -35,13 +35,13 @@ export function Skeleton() {
               ))}
             </div>
           </div>
-          <div className="skeleton sk-line" style={{ width: 176, height: 176, borderRadius: 28 }} />
+          <div className="skeleton sk-line" style={{ width: 180, height: 180, borderRadius: 28 }} />
         </div>
       </div>
 
       <div className="section">
         <div className="skeleton sk-line" style={{ width: 200, height: 40 }} />
-        <div className="repo-grid" style={{ marginTop: 40 }}>
+        <div className="repo-grid" style={{ marginTop: 44 }}>
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="skeleton sk-block" />
           ))}
@@ -58,12 +58,17 @@ interface LoadingBarProps {
 export function LoadingBar({ progress }: LoadingBarProps) {
   return (
     <div
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Loading GitHub data"
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        height: 3,
+        height: 2,
         zIndex: 100,
       }}
     >
@@ -71,12 +76,12 @@ export function LoadingBar({ progress }: LoadingBarProps) {
         style={{
           height: "100%",
           width: `${progress}%`,
-          background: "linear-gradient(90deg, var(--accent-deep), var(--accent-soft))",
+          background: "var(--accent)",
           transition: "width 300ms var(--ease-out)",
-          boxShadow: "0 0 10px var(--accent)",
         }}
       />
       <div
+        aria-live="polite"
         style={{
           position: "absolute",
           top: 10,

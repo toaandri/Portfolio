@@ -5,6 +5,7 @@ import {
   MailIcon,
 } from "./icons";
 import { Reveal } from "./Reveal";
+import styles from "./Contact.module.css";
 
 const links = [
   {
@@ -38,23 +39,24 @@ export function Contact() {
     <section className="section" id="contact">
       <div className="container">
         <Reveal>
-          <div className="card contact-card">
-            <h3>Let's build something together.</h3>
+          <div className={`card ${styles.card}`}>
+            <h3>Let&apos;s build something together.</h3>
             <p>
-              I'm open to collaborations, internships, and interesting projects.
+              I&apos;m open to collaborations, internships, and interesting projects.
               Reach out anytime.
             </p>
-            <div className="social-row">
+            <div className={styles.socialRow}>
               {links.map(({ label, sub, href, Icon }) => (
                 <a
                   key={label}
                   href={href}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noreferrer"
-                  className="social-link"
+                  className={styles.link}
+                  aria-label={`Contact via ${label}`}
                 >
                   <Icon size={16} /> {label}
-                  <span style={{ color: "var(--text-faint)", fontWeight: 500 }}>
+                  <span className={styles.sub}>
                     · {sub}
                   </span>
                 </a>

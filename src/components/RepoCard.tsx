@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import type { GitHubRepo } from "../lib/github";
 import { getLanguageColor } from "../lib/github";
 import { ExternalIcon, ForkIcon, StarIcon } from "./icons";
+import styles from "./RepoCard.module.css";
 
 interface RepoCardProps {
   repo: GitHubRepo;
@@ -26,7 +27,7 @@ export function RepoCard({ repo, index }: RepoCardProps) {
       href={repo.html_url}
       target="_blank"
       rel="noreferrer"
-      className="card card-hoverable repo-card"
+      className={`card card-hoverable ${styles.card}`}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -35,27 +36,29 @@ export function RepoCard({ repo, index }: RepoCardProps) {
         ease: [0.23, 1, 0.32, 1],
         delay: Math.min(index * 0.05, 0.4),
       }}
+      aria-label={`Open ${repo.name} on GitHub`}
     >
-      <div className="repo-top">
-        <span className="repo-name">
+      <div className={styles.top}>
+        <span className={styles.name}>
           {repo.name}
           <ExternalIcon size={13} />
         </span>
-        <span className="repo-stars">
+        <span className={styles.stars}>
           <StarIcon size={13} /> {repo.stargazers_count}
         </span>
       </div>
 
-      <p className="repo-desc">
+      <p className={styles.desc}>
         {repo.description || "No description provided."}
       </p>
 
-      <div className="repo-meta">
+      <div className={styles.meta}>
         {lang && (
           <span>
             <span
-              className="repo-lang-dot"
+              className={styles.langDot}
               style={{ background: getLanguageColor(lang) }}
+              aria-hidden="true"
             />
             {lang}
           </span>
@@ -63,7 +66,7 @@ export function RepoCard({ repo, index }: RepoCardProps) {
         <span>
           <ForkIcon size={13} /> {repo.forks_count}
         </span>
-        <span>Updated {timeAgo(repo.updated_at)}</span>
+        <span className={styles.timeAgo}>Updated {timeAgo(repo.updated_at)}</span>
       </div>
     </motion.a>
   );

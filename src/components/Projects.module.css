@@ -1,0 +1,39 @@
+.filterTabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 40px 0 44px;
+  position: relative;
+}
+
+.tab {
+  position: relative;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--text-soft);
+  transition: color 200ms var(--ease-out);
+  z-index: 1;
+}
+
+.tab[data-active="true"] {
+  color: var(--accent-contrast);
+}
+
+.pill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  z-index: 0;
+  transition: transform 300ms var(--ease-in-out), width 300ms var(--ease-in-out);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 24px;
+}

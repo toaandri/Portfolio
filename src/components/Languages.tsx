@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { LanguageStat } from "../lib/github";
 import { Reveal } from "./Reveal";
+import styles from "./Languages.module.css";
 
 interface LanguagesProps {
   languages: LanguageStat[];
@@ -28,22 +29,20 @@ export function Languages({ languages }: LanguagesProps) {
           Distribution across all non-fork repositories.
         </Reveal>
 
-        <div className="lang-bars">
+        <div className={styles.bars} role="list" aria-label="Programming languages">
           {languages.map((l, i) => (
-            <div className="lang-bar-row" key={l.name}>
-              <span className="lang-name">
+            <div className={styles.row} key={l.name} role="listitem">
+              <span className={styles.name}>
                 <span
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: l.color,
-                  }}
+                  className={styles.dot}
+                  style={{ background: l.color }}
+                  aria-hidden="true"
                 />
                 {l.name}
               </span>
-              <div className="lang-track">
+              <div className={styles.track} role="progressbar" aria-valuenow={Math.round(l.percentage)} aria-label={`${l.name}: ${l.percentage.toFixed(1)}%`}>
                 <motion.div
+                  className={styles.fill}
                   style={{ background: l.color }}
                   initial={{ width: 0 }}
                   animate={{ width: mounted ? `${l.percentage}%` : 0 }}
@@ -54,7 +53,7 @@ export function Languages({ languages }: LanguagesProps) {
                   }}
                 />
               </div>
-              <span className="lang-pct">{l.percentage.toFixed(1)}%</span>
+              <span className={styles.pct}>{l.percentage.toFixed(1)}%</span>
             </div>
           ))}
           {languages.length === 0 && (

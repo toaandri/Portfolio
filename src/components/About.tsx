@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { GitHubData } from "../lib/github";
 import { Reveal } from "./Reveal";
+import styles from "./About.module.css";
 
 interface AboutProps {
   data: GitHubData;
@@ -31,16 +32,16 @@ export function About({ data }: AboutProps) {
           A snapshot of who I am and the tools I reach for.
         </Reveal>
 
-        <div className="about-grid" style={{ marginTop: 48 }}>
+        <div className={styles.grid} style={{ marginTop: 56 }}>
           <motion.div
-            className="about-text"
+            className={styles.text}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
           >
             <p>
-              I'm <strong>{user.name || user.login}</strong>, a software
+              I&apos;m <strong>{user.name || user.login}</strong>, a software
               engineering student based in Madagascar. I enjoy building
               practical web applications and exploring new technologies — from
               full-stack TypeScript projects to Java and Python.
@@ -48,18 +49,18 @@ export function About({ data }: AboutProps) {
             <p>
               My work spans academic projects and real-world apps, including{" "}
               <strong>MITANEKO</strong> for the Orange Digital Center POESAM and
-              a React-based dynamic web app. I'm constantly learning and pushing
+              a React-based dynamic web app. I&apos;m constantly learning and pushing
               my craft forward.
             </p>
 
-            <div className="skills">
+            <div className={styles.skills}>
               {topLangs.map((l) => (
-                <span key={l.name} className="skill-chip">
-                  <span className="lang-dot" style={{ background: l.color }} />
+                <span key={l.name} className={styles.chip}>
+                  <span className={styles.langDot} style={{ background: l.color }} />
                   {l.name}
                 </span>
               ))}
-              {repos.length === 0 && <span className="skill-chip">Learning…</span>}
+              {repos.length === 0 && <span className={styles.chip}>Learning…</span>}
             </div>
           </motion.div>
 
@@ -70,27 +71,29 @@ export function About({ data }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: 0.08 }}
+            role="complementary"
+            aria-label="GitHub statistics"
           >
-            <div className="fact-list">
-              <div className="fact">
-                <span className="fact-label">GitHub since</span>
-                <span className="fact-value">{joinDate}</span>
+            <div className={styles.factList}>
+              <div className={styles.fact}>
+                <span className={styles.factLabel}>GitHub since</span>
+                <span className={styles.factValue}>{joinDate}</span>
               </div>
-              <div className="fact">
-                <span className="fact-label">Public repos</span>
-                <span className="fact-value">{user.public_repos}</span>
+              <div className={styles.fact}>
+                <span className={styles.factLabel}>Public repos</span>
+                <span className={styles.factValue}>{user.public_repos}</span>
               </div>
-              <div className="fact">
-                <span className="fact-label">Followers</span>
-                <span className="fact-value">{user.followers}</span>
+              <div className={styles.fact}>
+                <span className={styles.factLabel}>Followers</span>
+                <span className={styles.factValue}>{user.followers}</span>
               </div>
-              <div className="fact">
-                <span className="fact-label">Following</span>
-                <span className="fact-value">{user.following}</span>
+              <div className={styles.fact}>
+                <span className={styles.factLabel}>Following</span>
+                <span className={styles.factValue}>{user.following}</span>
               </div>
-              <div className="fact">
-                <span className="fact-label">Top language</span>
-                <span className="fact-value">{topLangs[0]?.name || "—"}</span>
+              <div className={styles.fact}>
+                <span className={styles.factLabel}>Top language</span>
+                <span className={styles.factValue}>{topLangs[0]?.name || "—"}</span>
               </div>
             </div>
           </motion.div>
