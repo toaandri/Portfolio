@@ -1,18 +1,26 @@
 .grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 56px;
-  align-items: start;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
 }
 
-.text p {
+.bioCard {
+  background: var(--bg-elev);
+  border-radius: var(--radius);
+  padding: 36px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.bioCard p {
   color: var(--text-soft);
-  margin-bottom: 18px;
-  font-size: 1.05rem;
+  margin-bottom: 16px;
+  font-size: 1.02rem;
   line-height: 1.75;
 }
 
-.text strong {
+.bioCard strong {
   color: var(--text);
   font-weight: 600;
 }
@@ -20,19 +28,19 @@
 .skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 20px;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 7px;
+  padding: 7px 14px;
   border-radius: var(--radius-pill);
   background: var(--bg-sunken);
   border: 1px solid var(--border);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-spring);
 }
@@ -50,36 +58,95 @@
   border-radius: 50%;
 }
 
-.factList {
+/* Stats card */
+.statsCard {
+  background: var(--bg-elev);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.statsList {
   display: flex;
   flex-direction: column;
-  padding: 4px 0;
+  gap: 0;
 }
 
-.fact {
+.stat {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
   padding: 16px 0;
   border-bottom: 1px solid var(--border);
-  font-size: 0.92rem;
 }
 
-.fact:last-child {
+.stat:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
-.factLabel {
+.stat:first-child {
+  padding-top: 0;
+}
+
+.statDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stat div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabel {
+  font-size: 0.76rem;
   color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
 }
 
-.factValue {
+.statValue {
   font-weight: 600;
   font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+
+/* Quote card */
+.quoteCard {
+  grid-column: 1 / -1;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 8%, var(--bg-elev)),
+    var(--bg-elev)
+  );
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.quoteCard blockquote {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-soft);
+  line-height: 1.6;
+  max-width: 60ch;
 }
 
 @media (max-width: 820px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+  }
+  .bioCard {
+    padding: 24px;
+  }
+  .quoteCard {
+    padding: 24px;
   }
 }

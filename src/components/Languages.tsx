@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { LanguageStat } from "../lib/github";
 import { Reveal } from "./Reveal";
+import { HorizontalPan } from "./HorizontalPan";
 import styles from "./Languages.module.css";
 
 interface LanguagesProps {
@@ -16,33 +17,44 @@ export function Languages({ languages }: LanguagesProps) {
     return () => cancelAnimationFrame(id);
   }, []);
 
+  if (languages.length === 0) {
+    return (
+      <section className="section" id="languages">
+        <div className="container">
+          <Reveal as="h2" className="section-title" delay={0.05}>
+            Languages I write.
+          </Reveal>
+          <p style={{ color: "var(--text-faint)", marginTop: 40 }}>
+            No language data available yet.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="section" id="languages">
       <div className="container">
-        <Reveal as="div" className="eyebrow">
-          Stack
-        </Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>
           Languages I write.
         </Reveal>
         <Reveal as="p" className="section-sub" delay={0.1}>
           Distribution across all non-fork repositories.
         </Reveal>
+      </div>
 
-        <div className={styles.bars} role="list" aria-label="Programming languages">
+      <HorizontalPan>
+        <div className={styles.panTrack}>
           {languages.map((l, i) => (
-            <div className={styles.row} key={l.name} role="listitem">
-              <span className={styles.name}>
-                <span
-                  className={styles.dot}
-                  style={{ background: l.color }}
-                  aria-hidden="true"
-                />
-                {l.name}
-              </span>
-              <div className={styles.track} role="progressbar" aria-valuenow={Math.round(l.percentage)} aria-label={`${l.name}: ${l.percentage.toFixed(1)}%`}>
+            <div className={styles.panCard} key={l.name}>
+              <div className={styles.panHeader}>
+                <span className={styles.panDot} style={{ background: l.color }} aria-hidden="true" />
+                <span className={styles.panName}>{l.name}</span>
+                <span className={styles.panPct}>{l.percentage.toFixed(1)}%</span>
+              </div>
+              <div className={styles.panTrackBar}>
                 <motion.div
-                  className={styles.fill}
+                  className={styles.panFill}
                   style={{ background: l.color }}
                   initial={{ width: 0 }}
                   animate={{ width: mounted ? `${l.percentage}%` : 0 }}
@@ -53,16 +65,10 @@ export function Languages({ languages }: LanguagesProps) {
                   }}
                 />
               </div>
-              <span className={styles.pct}>{l.percentage.toFixed(1)}%</span>
             </div>
           ))}
-          {languages.length === 0 && (
-            <p style={{ color: "var(--text-faint)" }}>
-              No language data available yet.
-            </p>
-          )}
         </div>
-      </div>
+      </HorizontalPan>
     </section>
   );
 }

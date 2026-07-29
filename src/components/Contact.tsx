@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   FacebookIcon,
   GitHubIcon,
@@ -47,19 +48,21 @@ export function Contact() {
             </p>
             <div className={styles.socialRow}>
               {links.map(({ label, sub, href, Icon }) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noreferrer"
                   className={styles.link}
                   aria-label={`Contact via ${label}`}
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   <Icon size={16} /> {label}
                   <span className={styles.sub}>
                     · {sub}
                   </span>
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>

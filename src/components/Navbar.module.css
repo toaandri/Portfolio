@@ -147,16 +147,21 @@
   transform: translateY(0);
 }
 
+.hamburgerLine:nth-child(3) {
+  transform: translateY(5px);
+}
+
 .hamburger[data-open="true"] .hamburgerLine:nth-child(1) {
-  transform: rotate(45deg);
+  transform: rotate(45deg) translateY(0);
 }
 
 .hamburger[data-open="true"] .hamburgerLine:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .hamburger[data-open="true"] .hamburgerLine:nth-child(3) {
-  transform: rotate(-45deg);
+  transform: rotate(-45deg) translateY(0);
 }
 
 /* Mobile overlay */

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import { useTheme } from "../hooks/useTheme";
 import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
 import styles from "./Navbar.module.css";
@@ -19,6 +19,7 @@ const navItems = [
 
 export function Navbar({ onRefresh, refreshing }: NavbarProps) {
   const { theme, toggle } = useTheme();
+  const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -31,12 +32,9 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 12);
+  });
 
   // Focus trap for mobile menu
   useEffect(() => {

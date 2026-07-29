@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -10,8 +10,18 @@ interface RevealProps {
   className?: string;
 }
 
-export function Reveal({ children, delay = 0, as = "div", className }: RevealProps) {
-  const Tag = motion[as];
+type AllowedTags = "div" | "span" | "h2" | "p";
+
+export function Reveal({
+  children,
+  delay = 0,
+  as = "div" as AllowedTags,
+  className,
+  ...rest
+}: RevealProps & Record<string, unknown>) {
+  const Tag = motion[as as keyof typeof motion] as React.ComponentType<
+    ComponentPropsWithoutRef<typeof motion.div> & Record<string, unknown>
+  >;
   return (
     <Tag
       className={className}
@@ -19,6 +29,7 @@ export function Reveal({ children, delay = 0, as = "div", className }: RevealPro
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: EASE, delay }}
+      {...rest}
     >
       {children}
     </Tag>

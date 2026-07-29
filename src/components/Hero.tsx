@@ -47,7 +47,7 @@ export function Hero({ data }: HeroProps) {
           initial="hidden"
           animate="show"
         >
-          <div>
+          <div className={styles.contentCol}>
             <motion.div variants={item} className={styles.kicker}>
               Software Engineering Student
             </motion.div>
@@ -62,13 +62,9 @@ export function Hero({ data }: HeroProps) {
               )}
             </motion.h1>
 
-            <motion.div variants={item} className={styles.handle}>
-              @{user.login} · Madagascar
-            </motion.div>
-
             <motion.p variants={item} className={styles.bio}>
-              {user.bio ||
-                "I build practical web applications and explore new technologies, from full-stack TypeScript to Java and Python."}
+              I build practical web apps from Madagascar —
+              TypeScript, Java, Python, and whatever else gets the job done.
             </motion.p>
 
             <motion.div variants={item} className={styles.actions}>
@@ -81,40 +77,43 @@ export function Hero({ data }: HeroProps) {
               >
                 <GitHubIcon size={16} /> View repositories
               </a>
-              <a href="#projects" className="btn btn-ghost">
-                See my work
+              <a href="#contact" className="btn btn-ghost">
+                Get in touch
               </a>
             </motion.div>
 
-            <motion.div variants={item} className={styles.statRow}>
-              <div>
-                <div className={styles.statValue}>{user.public_repos}</div>
-                <div className={styles.statLabel}>Repositories</div>
-              </div>
-              <div>
-                <div className={styles.statValue}>{totalStars}</div>
-                <div className={styles.statLabel}>Stars earned</div>
-              </div>
-              <div>
-                <div className={styles.statValue}>{user.followers}</div>
-                <div className={styles.statLabel}>Followers</div>
-              </div>
-              <div>
-                <div className={styles.statValue}>{user.following}</div>
-                <div className={styles.statLabel}>Following</div>
+            <motion.div variants={item} style={{ marginTop: 48 }}>
+              <div className={styles.statRow}>
+                <div className={styles.statItem}>
+                  <span className={styles.statValue}>{user.public_repos}</span>
+                  <span className={styles.statLabel}>repos</span>
+                </div>
+                <div className={styles.statDivider} />
+                <div className={styles.statItem}>
+                  <span className={styles.statValue}>{totalStars}</span>
+                  <span className={styles.statLabel}>stars</span>
+                </div>
+                <div className={styles.statDivider} />
+                <div className={styles.statItem}>
+                  <span className={styles.statValue}>{user.followers}</span>
+                  <span className={styles.statLabel}>followers</span>
+                </div>
               </div>
             </motion.div>
           </div>
 
-          <motion.div variants={item} className={styles.avatar}>
-            <img src={user.avatar_url} alt={user.login} loading="eager" />
-            <span className={styles.avatarRing} aria-hidden="true" />
+          <motion.div variants={item} className={styles.avatarCol}>
+            <div className={styles.avatar}>
+              <img src={user.avatar_url} alt={user.login} loading="eager" />
+              <span className={styles.avatarRing} aria-hidden="true" />
+              <span className={styles.avatarPulse} aria-hidden="true" />
+            </div>
           </motion.div>
         </motion.div>
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 40, justifyContent: "flex-start" }}
+          style={{ marginTop: 48, justifyContent: "flex-start" }}
           variants={container}
           initial="hidden"
           animate="show"

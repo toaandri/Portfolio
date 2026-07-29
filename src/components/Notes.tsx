@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { notes } from "../lib/notes";
 import styles from "./Notes.module.css";
@@ -16,9 +17,6 @@ export function Notes() {
   return (
     <section className="section" id="notes">
       <div className="container">
-        <Reveal as="div" className="eyebrow">
-          Notes
-        </Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>
           Writing & things I&apos;m learning.
         </Reveal>
@@ -28,18 +26,27 @@ export function Notes() {
 
         <div className={styles.list}>
           {sorted.map((note, i) => (
-            <Reveal key={note.slug} delay={0.05 * i} as="div">
-              <article className={`card card-hoverable ${styles.item}`}>
-                <div className={styles.meta}>
-                  <time className={styles.date} dateTime={note.date}>
-                    {formatDate(note.date)}
-                  </time>
-                  <span className={styles.tag}>{note.tag}</span>
-                </div>
-                <h3 className={styles.title}>{note.title}</h3>
-                <p className={styles.excerpt}>{note.excerpt}</p>
-              </article>
-            </Reveal>
+            <motion.article
+              key={note.slug}
+              className={`card card-hoverable ${styles.item}`}
+              initial={{ clipPath: "inset(0 0 100% 0)" }}
+              whileInView={{ clipPath: "inset(0 0 0 0)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.7,
+                ease: [0.23, 1, 0.32, 1],
+                delay: 0.08 * i,
+              }}
+            >
+              <div className={styles.meta}>
+                <time className={styles.date} dateTime={note.date}>
+                  {formatDate(note.date)}
+                </time>
+                <span className={styles.tag}>{note.tag}</span>
+              </div>
+              <h3 className={styles.title}>{note.title}</h3>
+              <p className={styles.excerpt}>{note.excerpt}</p>
+            </motion.article>
           ))}
           {sorted.length === 0 && (
             <p style={{ color: "var(--text-faint)" }}>

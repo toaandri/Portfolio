@@ -1,8 +1,14 @@
+.filterWrap {
+  position: sticky;
+  top: 96px;
+  z-index: 10;
+  margin: 40px 0 44px;
+}
+
 .filterTabs {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin: 40px 0 44px;
   position: relative;
 }
 
@@ -29,7 +35,6 @@
   border-radius: var(--radius-pill);
   background: var(--accent);
   z-index: 0;
-  transition: transform 300ms var(--ease-in-out), width 300ms var(--ease-in-out);
 }
 
 .grid {
