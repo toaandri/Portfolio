@@ -1,31 +1,40 @@
 .filterWrap {
   position: sticky;
-  top: 96px;
+  top: calc(var(--nav-height) + var(--space-8));
   z-index: 10;
-  margin: 40px 0 44px;
+  margin: var(--space-6) 0 var(--space-8);
 }
 
 .filterTabs {
   display: flex;
-  gap: 6px;
+  gap: var(--space-2);
   flex-wrap: wrap;
   position: relative;
 }
 
 .tab {
   position: relative;
-  padding: 9px 18px;
+  padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-pill);
   font-size: 0.84rem;
   font-weight: 600;
   font-family: var(--font-display);
   color: var(--text-soft);
-  transition: color 200ms var(--ease-out);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
   z-index: 1;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--bg-sunken);
 }
 
 .tab[data-active="true"] {
   color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .pill {
@@ -40,5 +49,5 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 24px;
+  gap: var(--space-6);
 }

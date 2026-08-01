@@ -26,7 +26,7 @@ export function About({ data }: AboutProps) {
         </Reveal>
 
         <div className={styles.grid}>
-          <Reveal delay={0.1} className={styles.bioCard}>
+          <Reveal delay={0.1} className={`card card-hoverable ${styles.bioCard}`}>
             <p>
               I&apos;m <strong>{user.name || user.login}</strong>, a software
               engineering student based in Madagascar. I build practical
@@ -49,7 +49,7 @@ export function About({ data }: AboutProps) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className={styles.statsCard} role="complementary" aria-label="GitHub statistics">
+          <Reveal delay={0.15} className={`card card-hoverable ${styles.statsCard}`} role="complementary" aria-label="GitHub statistics">
             <div className={styles.statsList}>
               <div className={styles.stat}>
                 <span className={styles.statDot} style={{ background: "var(--accent)" }} aria-hidden="true" />
@@ -82,8 +82,8 @@ export function About({ data }: AboutProps) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.2} className={styles.quoteCard}>
-            <svg width="32" height="24" viewBox="0 0 32 24" fill="none" aria-hidden="true" style={{ opacity: 0.2, marginBottom: 12 }}>
+          <Reveal delay={0.2} className={`card card-hoverable ${styles.quoteCard}`}>
+            <svg width="32" height="24" viewBox="0 0 32 24" fill="none" aria-hidden="true" style={{ opacity: 0.2, marginBottom: 8 }}>
               <path d="M10 24H0L6 0h8l-4 24zm14 0h-8l6-24h8l-6 24z" fill="currentColor" />
             </svg>
             <blockquote>

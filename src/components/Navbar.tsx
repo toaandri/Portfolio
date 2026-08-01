@@ -97,16 +97,16 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
               </a>
             ))}
             <button
-              className={styles.refreshBtn}
+              className={`${styles.navAction} ${refreshing ? styles.spinning : ""}`}
               onClick={onRefresh}
               aria-label="Refresh GitHub data"
               title="Refresh GitHub data"
             >
-              <GitHubIcon size={14} className={refreshing ? styles.spinning : ""} />
+              <GitHubIcon size={14} />
               Sync
             </button>
             <button
-              className={styles.themeToggle}
+              className={styles.btnIcon}
               onClick={toggle}
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
@@ -146,14 +146,14 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
           </a>
         ))}
         <button
-          className={styles.refreshBtn}
+          className={`${styles.navAction} ${refreshing ? styles.spinning : ""}`}
           onClick={() => { onRefresh(); closeMenu(); }}
         >
-          <GitHubIcon size={16} className={refreshing ? styles.spinning : ""} />
+          <GitHubIcon size={16} />
           Sync
         </button>
         <button
-          className={`${styles.themeToggle} ${styles.themeToggleBtn}`}
+          className={`${styles.btnIcon} ${styles.btnIconLg}`}
           onClick={() => { toggle(); closeMenu(); }}
           aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
         >

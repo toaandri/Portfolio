@@ -51,18 +51,18 @@ export default function App() {
       {loading && !data && <Skeleton />}
 
       {error && !data && (
-        <div className="container" style={{ padding: "120px 0" }}>
+        <div className="container" style={{ padding: "var(--space-24) 0" }}>
           <div className="error-banner">
-            <h2 style={{ marginBottom: 12 }}>
+            <h2 style={{ marginBottom: "var(--space-3)" }}>
               <strong>Couldn&apos;t reach GitHub</strong>
             </h2>
             <p>{error}</p>
-            <p style={{ marginTop: 12, fontSize: 14 }}>
+            <p style={{ marginTop: "var(--space-3)", fontSize: 14 }}>
               The public API allows ~60 requests/hour. Try refreshing shortly.
             </p>
             <button
               className="btn btn-primary"
-              style={{ marginTop: 20 }}
+              style={{ marginTop: "var(--space-5)" }}
               onClick={refresh}
             >
               Retry

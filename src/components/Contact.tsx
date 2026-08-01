@@ -40,7 +40,7 @@ export function Contact() {
     <section className="section" id="contact">
       <div className="container">
         <Reveal>
-          <div className={`card ${styles.card}`}>
+          <div className={`card card-hoverable ${styles.card}`}>
             <h3>Let&apos;s build something together.</h3>
             <p>
               I&apos;m open to collaborations, internships, and interesting projects.
@@ -53,13 +53,13 @@ export function Contact() {
                   href={href}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noreferrer"
-                  className={styles.link}
+                  className="social-link"
                   aria-label={`Contact via ${label}`}
                   whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <Icon size={16} /> {label}
-                  <span className={styles.sub}>
+                  <span className="sub">
                     · {sub}
                   </span>
                 </motion.a>

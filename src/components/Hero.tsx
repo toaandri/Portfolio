@@ -47,9 +47,21 @@ export function Hero({ data }: HeroProps) {
           initial="hidden"
           animate="show"
         >
+          <motion.div variants={item} className={styles.avatarCol}>
+            <div className={styles.avatar}>
+              <img src={user.avatar_url} alt={user.login} loading="eager" />
+              <span className={styles.avatarRing} aria-hidden="true" />
+              <span className={styles.avatarPulse} aria-hidden="true" />
+            </div>
+            <motion.p variants={item} className={styles.avatarBio}>
+              I build practical web apps from Madagascar —
+              TypeScript, Java, Python, and whatever else gets the job done.
+            </motion.p>
+          </motion.div>
+
           <div className={styles.contentCol}>
-            <motion.div variants={item} className={styles.kicker}>
-              Software Engineering Student
+            <motion.div variants={item} className="kicker">
+              Software Developer
             </motion.div>
 
             <motion.h1 variants={item} className={styles.name}>
@@ -62,11 +74,6 @@ export function Hero({ data }: HeroProps) {
               )}
             </motion.h1>
 
-            <motion.p variants={item} className={styles.bio}>
-              I build practical web apps from Madagascar —
-              TypeScript, Java, Python, and whatever else gets the job done.
-            </motion.p>
-
             <motion.div variants={item} className={styles.actions}>
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
@@ -77,12 +84,9 @@ export function Hero({ data }: HeroProps) {
               >
                 <GitHubIcon size={16} /> View repositories
               </a>
-              <a href="#contact" className="btn btn-ghost">
-                Get in touch
-              </a>
             </motion.div>
 
-            <motion.div variants={item} style={{ marginTop: 48 }}>
+            <motion.div variants={item} style={{ marginTop: 32 }}>
               <div className={styles.statRow}>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>{user.public_repos}</span>
@@ -101,19 +105,11 @@ export function Hero({ data }: HeroProps) {
               </div>
             </motion.div>
           </div>
-
-          <motion.div variants={item} className={styles.avatarCol}>
-            <div className={styles.avatar}>
-              <img src={user.avatar_url} alt={user.login} loading="eager" />
-              <span className={styles.avatarRing} aria-hidden="true" />
-              <span className={styles.avatarPulse} aria-hidden="true" />
-            </div>
-          </motion.div>
         </motion.div>
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 48, justifyContent: "flex-start" }}
+          style={{ marginTop: 32, justifyContent: "flex-start" }}
           variants={container}
           initial="hidden"
           animate="show"
@@ -138,7 +134,7 @@ export function Hero({ data }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            style={{ marginTop: 18, color: "var(--text-faint)", fontSize: 13 }}
+            style={{ marginTop: 16, color: "var(--text-faint)", fontSize: 13 }}
           >
             <StarIcon size={14} /> Earned {totalStars} star
             {totalStars > 1 ? "s" : ""} across public repositories.

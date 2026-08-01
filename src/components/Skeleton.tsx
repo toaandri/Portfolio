@@ -41,7 +41,7 @@ export function Skeleton() {
 
       <div className="section">
         <div className="skeleton sk-line" style={{ width: 200, height: 40 }} />
-        <div className="repo-grid" style={{ marginTop: 44 }}>
+        <div className="repo-grid" style={{ marginTop: 32 }}>
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="skeleton sk-block" />
           ))}

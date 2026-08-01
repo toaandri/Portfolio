@@ -24,7 +24,7 @@ export function Languages({ languages }: LanguagesProps) {
           <Reveal as="h2" className="section-title" delay={0.05}>
             Languages I write.
           </Reveal>
-          <p style={{ color: "var(--text-faint)", marginTop: 40 }}>
+          <p style={{ color: "var(--text-faint)", marginTop: 32 }}>
             No language data available yet.
           </p>
         </div>
@@ -46,7 +46,7 @@ export function Languages({ languages }: LanguagesProps) {
       <HorizontalPan>
         <div className={styles.panTrack}>
           {languages.map((l, i) => (
-            <div className={styles.panCard} key={l.name}>
+            <div className={`card card-hoverable ${styles.panCard}`} key={l.name}>
               <div className={styles.panHeader}>
                 <span className={styles.panDot} style={{ background: l.color }} aria-hidden="true" />
                 <span className={styles.panName}>{l.name}</span>
