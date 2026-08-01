@@ -3,33 +3,33 @@ import { ClockIcon } from "./icons";
 export function Skeleton() {
   return (
     <div className="container">
-      <div className="hero" style={{ paddingTop: 80 }}>
+      <div className="hero" style={{ paddingTop: "var(--space-20)" }}>
         <div className="hero-grid">
           <div>
             <div className="skeleton sk-line" style={{ width: 220, height: 16 }} />
             <div
               className="skeleton sk-line"
-              style={{ width: "90%", height: 64, marginTop: 22 }}
+              style={{ width: "90%", height: 64, marginTop: "var(--space-5)" }}
             />
             <div
               className="skeleton sk-line"
-              style={{ width: "70%", height: 16, marginTop: 20 }}
+              style={{ width: "70%", height: 16, marginTop: "var(--space-5)" }}
             />
             <div
               className="skeleton sk-line"
-              style={{ width: "100%", height: 16, marginTop: 14 }}
+              style={{ width: "100%", height: 16, marginTop: "var(--space-4)" }}
             />
             <div
               className="skeleton sk-line"
-              style={{ width: "60%", height: 16, marginTop: 10 }}
+              style={{ width: "60%", height: 16, marginTop: "var(--space-3)" }}
             />
-            <div style={{ display: "flex", gap: 40, marginTop: 32 }}>
+            <div style={{ display: "flex", gap: "var(--space-10)", marginTop: "var(--space-8)" }}>
               {[0, 1, 2, 3].map((i) => (
                 <div key={i} style={{ width: 90 }}>
                   <div className="skeleton sk-line" style={{ height: 30 }} />
                   <div
                     className="skeleton sk-line"
-                    style={{ height: 12, marginTop: 10, width: 64 }}
+                    style={{ height: 12, marginTop: "var(--space-3)", width: 64 }}
                   />
                 </div>
               ))}
@@ -41,7 +41,7 @@ export function Skeleton() {
 
       <div className="section">
         <div className="skeleton sk-line" style={{ width: 200, height: 40 }} />
-        <div className="repo-grid" style={{ marginTop: 32 }}>
+        <div className="repo-grid" style={{ marginTop: "var(--space-8)" }}>
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="skeleton sk-block" />
           ))}
