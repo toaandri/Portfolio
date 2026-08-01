@@ -1,8 +1,8 @@
 .card {
-  padding: 24px;
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
   height: 100%;
 }
 
@@ -10,7 +10,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .name {
@@ -20,25 +20,25 @@
   letter-spacing: -0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   color: var(--text);
-  transition: color 200ms var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .name {
+  .card-hoverable:hover .name {
     color: var(--accent-deep);
   }
 }
 
-[data-theme="dark"] .card:hover .name {
+[data-theme="dark"] .card-hoverable:hover .name {
   color: var(--accent-soft);
 }
 
 .stars {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--space-1);
   font-size: 0.8rem;
   color: var(--text-soft);
   font-weight: 600;
@@ -57,18 +57,18 @@
 .meta {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-4);
   font-size: 0.8rem;
   color: var(--text-faint);
   border-top: 1px solid var(--border);
-  padding-top: 14px;
+  padding-top: var(--space-4);
   flex-wrap: wrap;
 }
 
 .meta span {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--space-1);
 }
 
 .langDot {
