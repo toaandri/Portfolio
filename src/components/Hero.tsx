@@ -109,7 +109,7 @@ export function Hero({ data }: HeroProps) {
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 32, justifyContent: "flex-start" }}
+          style={{ marginTop: 32, justifyContent: "center" }}
           variants={container}
           initial="hidden"
           animate="show"
@@ -134,7 +134,7 @@ export function Hero({ data }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            style={{ marginTop: 16, color: "var(--text-faint)", fontSize: 13 }}
+            style={{ marginTop: 16, color: "var(--text-faint)", fontSize: 13, textAlign: "center" }}
           >
             <StarIcon size={14} /> Earned {totalStars} star
             {totalStars > 1 ? "s" : ""} across public repositories.
