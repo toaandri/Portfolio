@@ -64,17 +64,11 @@ export function Hero({ data }: HeroProps) {
               Software Developer
             </motion.div>
 
-            <motion.h1 variants={item} className={styles.name}>
-              <MaskText as="h1" text={first} delay={0.15} />
-              {rest && (
-                <span className={styles.amber}>
-                  {" "}
-                  <MaskText as="h1" text={rest} delay={0.28} />
-                </span>
-              )}
-            </motion.h1>
-
-            <motion.div variants={item} className={styles.actions}>
+            <motion.div
+              variants={item}
+              className={styles.actions}
+              style={{ marginTop: "var(--space-10)" }}
+            >
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
                 className="btn btn-primary btn-magnetic"
@@ -86,7 +80,7 @@ export function Hero({ data }: HeroProps) {
               </a>
             </motion.div>
 
-            <motion.div variants={item} style={{ marginTop: 32 }}>
+            <motion.div variants={item} style={{ marginTop: "var(--space-8)" }}>
               <div className={styles.statRow}>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>{user.public_repos}</span>
@@ -104,6 +98,20 @@ export function Hero({ data }: HeroProps) {
                 </div>
               </div>
             </motion.div>
+
+            <motion.h1
+              variants={item}
+              className={styles.name}
+              style={{ marginTop: "var(--space-10)" }}
+            >
+              <MaskText as="h1" text={first} delay={0.15} />
+              {rest && (
+                <span className={styles.amber}>
+                  {" "}
+                  <MaskText as="h1" text={rest} delay={0.28} />
+                </span>
+              )}
+            </motion.h1>
           </div>
         </motion.div>
 
