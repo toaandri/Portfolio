@@ -77,12 +77,12 @@ export function Hero({ data }: HeroProps) {
             <motion.div variants={item} className={styles.actions}>
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
-                className="btn btn-primary"
+                className="btn btn-primary btn-magnetic"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="View GitHub repositories"
               >
-                <GitHubIcon size={16} /> View repositories
+                <GitHubIcon size={16} className="btn-icon-trail" /> View repositories
               </a>
             </motion.div>
 
