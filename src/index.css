@@ -63,24 +63,21 @@
 }
 
 :root {
-  /* === EASING === */
+
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-magnetic: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* === COLOR - OKLCH for perceptual uniformity === */
-  --accent: oklch(62% 0.18 65);       /* Amber #d97706 */
-  --accent-soft: oklch(72% 0.15 65);  /* Lighter amber */
-  --accent-deep: oklch(48% 0.16 65);  /* Deeper amber */
-  --accent-contrast: oklch(4% 0 0);   /* Near black — AA on amber */
+  --accent: oklch(62% 0.18 65);
+  --accent-soft: oklch(72% 0.15 65);
+  --accent-deep: oklch(48% 0.16 65);
+  --accent-contrast: oklch(4% 0 0);
 
-  /* === TYPOGRAPHY === */
   --font-display: "Geist", "Geist Mono", system-ui, sans-serif;
   --font-body: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
 
-  /* === SPACING SCALE (4px base unit) === */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -95,35 +92,29 @@
   --space-20: 80px;
   --space-24: 96px;
 
-  /* === BORDER RADIUS === */
   --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-pill: 999px;
 
-  /* === LAYOUT === */
   --maxw: 1200px;
   --nav-height: 56px;
   --nav-height-mobile: 64px;
 
-  /* === SURFACES === */
-  --bg: oklch(96.5% 0.008 65);      /* Warm off-white #f7f5f0 */
-  --bg-elev: oklch(100% 0 0);        /* Pure white */
-  --bg-sunken: oklch(92% 0.006 65);  /* Slightly darker warm gray */
+  --bg: oklch(96.5% 0.008 65);
+  --bg-elev: oklch(100% 0 0);
+  --bg-sunken: oklch(92% 0.006 65);
   --bg-accent-subtle: oklch(96.5% 0.008 65 / 0.9);
 
-  /* === TEXT === */
-  --text: oklch(4% 0 0);             /* Near black #0a0a0a */
-  --text-soft: oklch(32% 0 0);       /* Medium gray #525252 */
-  --text-faint: oklch(50% 0 0);       /* #636363 — 5.4:1 on bg */
+  --text: oklch(4% 0 0);
+  --text-soft: oklch(32% 0 0);
+  --text-faint: oklch(50% 0 0);
 
-  /* === BORDERS === */
   --border: rgba(0, 0, 0, 0.05);
   --border-strong: rgba(0, 0, 0, 0.1);
   --border-focus: var(--accent);
 
-  /* === SHADOWS (tinted to background hue) === */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
@@ -131,17 +122,14 @@
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);
   --glow: 0 0 0 1px oklch(72% 0.15 65 / 0.3), 0 8px 32px oklch(62% 0.18 65 / 0.15);
 
-  /* === TRANSITIONS === */
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --duration-slow: 300ms;
   --duration-slower: 400ms;
 
-  /* === SKELETON === */
   --skeleton-base: oklch(90% 0.005 65);
   --skeleton-shine: oklch(95% 0.003 65);
 
-  /* === Z-INDEX SCALE === */
   --z-base: 1;
   --z-sticky: 50;
   --z-overlay: 55;
@@ -248,7 +236,6 @@ button {
   top: 16px;
 }
 
-/* Grain texture overlay */
 .grain::before {
   content: "";
   position: fixed;
@@ -265,7 +252,6 @@ button {
   opacity: 0.04;
 }
 
-/* Error banner */
 .error-banner {
   text-align: center;
   padding: 48px;
@@ -280,9 +266,6 @@ button {
   font-family: var(--font-display);
 }
 
-/* === UNIFIED DESIGN SYSTEM COMPONENTS === */
-
-/* Double-Bezel Card System (replaces all card variants) */
 .card {
   background: var(--bg-elev);
   border-radius: var(--radius);
@@ -310,7 +293,6 @@ button {
   }
 }
 
-/* Card variants using the base */
 .card-elevated {
   box-shadow: var(--shadow);
 }
@@ -334,7 +316,6 @@ button {
     border-color var(--duration-slow) var(--ease-out);
 }
 
-/* Unified Button System */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -347,7 +328,7 @@ button {
   font-size: 0.9rem;
   letter-spacing: -0.01em;
   line-height: 1;
-  transition: 
+  transition:
     transform var(--duration-fast) var(--ease-spring),
     box-shadow var(--duration-base) var(--ease-out),
     background var(--duration-base) var(--ease-out),
@@ -365,7 +346,6 @@ button {
   outline-offset: 2px;
 }
 
-/* Primary CTA - single accent intent */
 .btn-primary {
   background: var(--accent);
   color: var(--accent-contrast);
@@ -381,7 +361,6 @@ button {
   background: var(--accent);
 }
 
-/* Secondary/Ghost - same hierarchy level */
 .btn-secondary {
   background: var(--bg-elev);
   border: 1px solid var(--border-strong);
@@ -398,7 +377,6 @@ button {
   color: var(--accent-soft);
 }
 
-/* Tertiary/Subtle - for less important actions */
 .btn-tertiary {
   background: transparent;
   border: 1px solid transparent;
@@ -412,7 +390,6 @@ button {
   border-color: var(--border);
 }
 
-/* Icon button (for nav, social, etc) */
 .btn-icon {
   width: 38px;
   height: 38px;
@@ -438,7 +415,6 @@ button {
   height: 48px;
 }
 
-/* Magnetic Button Physics (premium hover) */
 @media (hover: hover) and (pointer: fine) {
   .btn-magnetic {
     will-change: transform;
@@ -460,7 +436,6 @@ button {
   }
 }
 
-/* Unified Social Link (replaces .social-link and Contact .link) */
 .social-link {
   display: inline-flex;
   align-items: center;
@@ -473,7 +448,7 @@ button {
   font-size: 0.88rem;
   font-family: var(--font-display);
   color: var(--text);
-  transition: 
+  transition:
     transform var(--duration-fast) var(--ease-spring),
     border-color var(--duration-base) var(--ease-out),
     color var(--duration-base) var(--ease-out),
@@ -497,7 +472,6 @@ button {
   transform: scale(0.97);
 }
 
-/* Secondary hint text inside social-links (e.g. Contact "· @handle") */
 .social-link .sub {
   color: var(--text-faint);
   font-family: var(--font-mono);
@@ -510,7 +484,6 @@ button {
   color: var(--text-soft);
 }
 
-/* Unified Section Typography */
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.6rem);
@@ -529,7 +502,6 @@ button {
   line-height: 1.7;
 }
 
-/* Kicker/Eyebrow - MAX 1 per 3 sections */
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -555,7 +527,6 @@ button {
   border-radius: 2px;
 }
 
-/* Container */
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -569,7 +540,6 @@ button {
   }
 }
 
-/* Section spacing */
 .section {
   padding: var(--space-3) 0;
   scroll-margin-top: 100px;
@@ -580,7 +550,6 @@ button {
   scroll-margin-top: 100px;
 }
 
-/* Hero skeleton layout */
 .hero {
   padding: var(--space-5) 0 var(--space-2);
 }
@@ -598,21 +567,18 @@ button {
   }
 }
 
-/* Repo grid (shared with skeleton) */
 .repo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: var(--space-6);
 }
 
-/* Social row (shared) */
 .social-row {
   display: flex;
   gap: var(--space-3);
   flex-wrap: wrap;
 }
 
-/* Scroll progress */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -630,7 +596,6 @@ button {
   transform-origin: left center;
 }
 
-/* Skeleton */
 .skeleton {
   background: var(--skeleton-base);
   background-image: linear-gradient(
@@ -660,7 +625,6 @@ button {
   border-radius: var(--radius);
 }
 
-/* Mask text animation */
 .mask-line {
   display: block;
   overflow: hidden;
@@ -672,7 +636,6 @@ button {
   will-change: transform;
 }
 
-/* Lenis */
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
@@ -681,7 +644,6 @@ button {
   overflow: hidden;
 }
 
-/* Responsive - unified breakpoint at 768px */
 @media (max-width: 768px) {
   .section {
     padding: var(--space-2) 0;

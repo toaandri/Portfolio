@@ -66,7 +66,6 @@
   }
 }
 
-/* Unified button system for nav actions */
 .nav-action {
   display: inline-flex;
   align-items: center;
@@ -99,7 +98,6 @@
   animation: spin 0.9s linear infinite;
 }
 
-/* Icon button variant for theme toggle */
 .btn-icon {
   width: 38px;
   height: 38px;
@@ -127,7 +125,6 @@
   height: 48px;
 }
 
-/* Hamburger */
 .hamburger {
   display: none;
   width: 38px;
@@ -180,7 +177,6 @@
   transform: rotate(-45deg) translateY(0);
 }
 
-/* Mobile overlay */
 .overlay {
   display: none;
 }

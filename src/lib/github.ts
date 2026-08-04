@@ -49,7 +49,7 @@ export interface GitHubData {
 
 const USERNAME = import.meta.env.VITE_GITHUB_USER || "toaandri";
 const CACHE_KEY = `github_cache_${USERNAME}`;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL = 5 * 60 * 1000;
 
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
@@ -100,7 +100,6 @@ function setCache(data: GitHubData): void {
     const entry: CacheEntry = { data, timestamp: Date.now() };
     localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
   } catch {
-    // localStorage full or blocked — ignore
   }
 }
 
@@ -132,11 +131,9 @@ export async function fetchGitHubData(
   onProgress?: (loaded: number, total: number) => void,
   signal?: AbortSignal
 ): Promise<GitHubData> {
-  // Check cache first (stale-while-revalidate)
   const cached = getCached();
   if (cached) {
     onProgress?.(1, 1);
-    // Revalidate in background
     fetchFreshData(onProgress, signal).then(setCache).catch(() => {});
     return cached;
   }

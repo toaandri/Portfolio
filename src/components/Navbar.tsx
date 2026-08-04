@@ -36,7 +36,6 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
     setScrolled(latest > 12);
   });
 
-  // Focus trap for mobile menu
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -65,7 +64,6 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
-  // Lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -89,7 +87,6 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
             toaandri
           </a>
 
-          {/* Desktop links */}
           <div className={styles.links}>
             {navItems.map(({ label, href }) => (
               <a key={href} href={href} className={styles.link}>
@@ -114,7 +111,6 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
             </button>
           </div>
 
-          {/* Hamburger */}
           <button
             ref={hamburgerRef}
             className={styles.hamburger}
@@ -131,7 +127,6 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
         </div>
       </nav>
 
-      {/* Mobile overlay */}
       <div
         ref={overlayRef}
         id="mobile-menu"
