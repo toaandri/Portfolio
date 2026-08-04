@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--space-6);
-  margin-top: var(--space-8);
+  margin-top: var(--space-4);
 }
 
 .bioCard {

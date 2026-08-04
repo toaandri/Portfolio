@@ -87,6 +87,7 @@
   --space-4: 16px;
   --space-5: 20px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
@@ -570,18 +571,18 @@ button {
 
 /* Section spacing */
 .section {
-  padding: var(--space-24) 0;
+  padding: var(--space-3) 0;
   scroll-margin-top: 100px;
 }
 
 .section-compact {
-  padding: var(--space-16) 0;
+  padding: var(--space-2) 0;
   scroll-margin-top: 100px;
 }
 
 /* Hero skeleton layout */
 .hero {
-  padding: var(--space-20) 0 var(--space-10);
+  padding: var(--space-5) 0 var(--space-2);
 }
 
 .hero-grid {
@@ -683,13 +684,13 @@ button {
 /* Responsive - unified breakpoint at 768px */
 @media (max-width: 768px) {
   .section {
-    padding: var(--space-20) 0;
+    padding: var(--space-2) 0;
   }
   .section-compact {
-    padding: var(--space-12) 0;
+    padding: var(--space-1) 0;
   }
   .hero {
-    padding: var(--space-16) 0 var(--space-8);
+    padding: var(--space-4) 0 var(--space-1);
   }
   .hero-grid {
     gap: var(--space-8);
