@@ -67,7 +67,7 @@ export function Hero({ data }: HeroProps) {
             <motion.div
               variants={item}
               className={styles.actions}
-              style={{ marginTop: "var(--space-10)" }}
+              style={{ marginTop: "0" }}
             >
               <a
                 href={`https://github.com/${user.login}?tab=repositories`}
@@ -80,7 +80,7 @@ export function Hero({ data }: HeroProps) {
               </a>
             </motion.div>
 
-            <motion.div variants={item} style={{ marginTop: "var(--space-8)" }}>
+            <motion.div variants={item} style={{ marginTop: "var(--space-6)" }}>
               <div className={styles.statRow}>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>{user.public_repos}</span>
@@ -102,7 +102,7 @@ export function Hero({ data }: HeroProps) {
             <motion.h1
               variants={item}
               className={styles.name}
-              style={{ marginTop: "var(--space-10)" }}
+              style={{ marginTop: "var(--space-8)" }}
             >
               <MaskText as="h1" text={first} delay={0.15} />
               {rest && (
@@ -117,7 +117,7 @@ export function Hero({ data }: HeroProps) {
 
         <motion.div
           className="social-row"
-          style={{ marginTop: 32, justifyContent: "center" }}
+          style={{ marginTop: "var(--space-1)", justifyContent: "center" }}
           variants={container}
           initial="hidden"
           animate="show"
@@ -142,7 +142,7 @@ export function Hero({ data }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            style={{ marginTop: 16, color: "var(--text-faint)", fontSize: 13, textAlign: "center" }}
+            style={{ marginTop: 8, color: "var(--text-faint)", fontSize: 13, textAlign: "center" }}
           >
             <StarIcon size={14} /> Earned {totalStars} star
             {totalStars > 1 ? "s" : ""} across public repositories.
