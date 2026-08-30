@@ -10,15 +10,18 @@
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: var(--maxw);
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-5);
-  background: rgba(10, 10, 10, 0.8);
+  gap: var(--space-6);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: saturate(180%) blur(16px);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
   transition: background var(--duration-slower) var(--ease-out), border-color var(--duration-slower) var(--ease-out);
 }
 
@@ -28,7 +31,6 @@
   letter-spacing: -0.02em;
   font-size: 1rem;
   color: var(--text);
-  padding-left: var(--space-4);
 }
 
 .links {
@@ -137,6 +139,12 @@
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+  }
+
+  .inner {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .links {

@@ -18,6 +18,10 @@ const groups = [
     title: "Tools & Interaction",
     items: ["GitHub", "Netlify", "GSAP", "UI Interactions"],
   },
+  {
+    title: "Languages",
+    items: ["Malagasy", "Français", "English"],
+  },
 ];
 
 export function Skills() {
