@@ -1,24 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
-import { useTheme } from "../hooks/useTheme";
-import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
 import styles from "./Navbar.module.css";
 
 interface NavbarProps {
-  onRefresh: () => void;
-  refreshing: boolean;
+  onRefresh?: () => void;
+  refreshing?: boolean;
 }
 
 const navItems = [
+  { label: "Home", href: "#top" },
+  { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Languages", href: "#languages" },
-  { label: "Notes", href: "#notes" },
-  { label: "Contact", href: "#contact" },
 ];
 
-export function Navbar({ onRefresh, refreshing }: NavbarProps) {
-  const { theme, toggle } = useTheme();
+export function Navbar(_props: NavbarProps) {
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
@@ -82,9 +79,8 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
 
       <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
         <div className={styles.inner}>
-          <a href="#top" className={styles.brand}>
-            <span className={styles.mark} aria-hidden="true" />
-            toaandri
+          <a href="#top" className={styles.brand} aria-label="Go to home section">
+            vm
           </a>
 
           <div className={styles.links}>
@@ -93,22 +89,9 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
                 {label}
               </a>
             ))}
-            <button
-              className={`${styles.navAction} ${refreshing ? styles.spinning : ""}`}
-              onClick={onRefresh}
-              aria-label="Refresh GitHub data"
-              title="Refresh GitHub data"
-            >
-              <GitHubIcon size={14} />
-              Sync
-            </button>
-            <button
-              className={styles.btnIcon}
-              onClick={toggle}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            >
-              {theme === "dark" ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-            </button>
+            <a href="#contact" className={styles.ctaButton}>
+              Let&apos;s Talk
+            </a>
           </div>
 
           <button
@@ -140,20 +123,9 @@ export function Navbar({ onRefresh, refreshing }: NavbarProps) {
             {label}
           </a>
         ))}
-        <button
-          className={`${styles.navAction} ${refreshing ? styles.spinning : ""}`}
-          onClick={() => { onRefresh(); closeMenu(); }}
-        >
-          <GitHubIcon size={16} />
-          Sync
-        </button>
-        <button
-          className={`${styles.btnIcon} ${styles.btnIconLg}`}
-          onClick={() => { toggle(); closeMenu(); }}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        >
-          {theme === "dark" ? <SunIcon size={20} /> : <MoonIcon size={20} />}
-        </button>
+        <a href="#contact" className={styles.ctaButton} onClick={closeMenu}>
+          Let&apos;s Talk
+        </a>
       </div>
     </>
   );
