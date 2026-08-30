@@ -79,10 +79,6 @@ export function Navbar(_props: NavbarProps) {
 
       <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
         <div className={styles.inner}>
-          <a href="#top" className={styles.brand} aria-label="Go to home section">
-            vm
-          </a>
-
           <div className={styles.links}>
             {navItems.map(({ label, href }) => (
               <a key={href} href={href} className={styles.link}>
