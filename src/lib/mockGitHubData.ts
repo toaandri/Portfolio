@@ -68,7 +68,7 @@ export const mockGitHubData: GitHubData = {
       homepage: null,
       default_branch: "main",
       fork: false,
-      languages: { Python: 38000, SQL: 8000, Dockerfile: 2000 },
+      languages: { Python: 38000, SQL: 8000 },
     },
     {
       id: 4,
