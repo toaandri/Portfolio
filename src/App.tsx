@@ -10,6 +10,7 @@ import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { Skeleton, LoadingBar } from "./components/Skeleton";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import styles from "./components/Footer.module.css";
 
 function Footer() {
@@ -36,6 +37,7 @@ function AppContent() {
 
   return (
     <div className="grain">
+      <SpeedInsights />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
