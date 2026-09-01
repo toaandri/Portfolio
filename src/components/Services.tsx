@@ -1,50 +1,53 @@
 import { Reveal } from "./Reveal";
+import { useLanguage } from "../lib/LanguageContext";
 import styles from "./Services.module.css";
 
-const services = [
+const servicesKeys = [
   {
-    title: "UI/UX Website Design",
-    desc: "Crafting user-centric designs that balance aesthetics and usability with intuitive navigation and clear hierarchy.",
-    tags: ["Modern layouts", "Responsive design"],
+    titleKey: "services.fullstack.title",
+    descKey: "services.fullstack.desc",
+    tags: ["React & TypeScript", "Node.js & Express", "PostgreSQL & MongoDB"],
   },
   {
-    title: "Frontend Development",
-    desc: "Building fast, accessible interfaces with clean, maintainable code and smooth, delightful interactions.",
-    tags: ["Clean HTML/CSS", "Smooth interactions"],
+    titleKey: "services.mobile.title",
+    descKey: "services.mobile.desc",
+    tags: ["React Native", "Expo", "Cross-platform"],
   },
   {
-    title: "Performance & Responsiveness",
-    desc: "Optimizing for speed and adapting fluidly to every screen size so your site feels instant on any device.",
-    tags: ["Speed optimization", "Asset efficiency"],
+    titleKey: "services.backend.title",
+    descKey: "services.backend.desc",
+    tags: ["REST & GraphQL", "Socket.io", "Auth & JWT"],
   },
   {
-    title: "WordPress Implementation",
-    desc: "Turning designs into flexible WordPress sites with easy content management and clean theme structure.",
-    tags: ["Theme setup", "Easy management"],
+    titleKey: "services.database.title",
+    descKey: "services.database.desc",
+    tags: ["PostgreSQL & MongoDB", "Redis & Firebase", "Supabase"],
   },
 ];
 
 export function Services() {
+  const { t } = useLanguage();
+
   return (
     <section className="section" id="services">
       <div className="container">
         <Reveal as="h2" className={styles.title} delay={0.05}>
-          Services
+          {t("services.title")}
         </Reveal>
         <Reveal as="p" className={styles.subtitle} delay={0.1}>
-          Designing clean scalable responsive websites
+          {t("services.subtitle")}
         </Reveal>
 
         <div className={styles.grid}>
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={0.08 * (i % 4)} className={styles.cardWrap}>
+          {servicesKeys.map((s, i) => (
+            <Reveal key={s.titleKey} delay={0.08 * (i % 4)} className={styles.cardWrap}>
               <div className={styles.card}>
-                <h3 className={styles.cardTitle}>{s.title}</h3>
-                <p className={styles.cardDesc}>{s.desc}</p>
+                <h3 className={styles.cardTitle}>{t(s.titleKey)}</h3>
+                <p className={styles.cardDesc}>{t(s.descKey)}</p>
                 <div className={styles.tags}>
-                  {s.tags.map((t) => (
-                    <span key={t} className={styles.tag}>
-                      {t}
+                  {s.tags.map((tag) => (
+                    <span key={tag} className={styles.tag}>
+                      {tag}
                     </span>
                   ))}
                 </div>

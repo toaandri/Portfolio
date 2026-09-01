@@ -1,48 +1,48 @@
 import { Reveal } from "./Reveal";
+import { useLanguage } from "../lib/LanguageContext";
 import styles from "./About.module.css";
 
-const steps = [
-  { num: "01", label: "Understand users & goals" },
-  { num: "02", label: "Create clean UI layouts" },
-  { num: "03", label: "Responsive experiences" },
+const stepsKeys = [
+  { num: "01", labelKey: "about.step1" },
+  { num: "02", labelKey: "about.step2" },
+  { num: "03", labelKey: "about.step3" },
 ];
 
-const metrics = [
-  { value: "02+", label: "Years of experience" },
-  { value: "15+", label: "Projects completed" },
-  { value: "05+", label: "Clients served" },
+const metricsKeys = [
+  { value: "12+", labelKey: "about.repos" },
+  { value: "06+", labelKey: "about.projects" },
+  { value: "04+", labelKey: "about.languages" },
 ];
 
 export function About() {
+  const { t } = useLanguage();
+
   return (
     <section className="section" id="about">
       <div className="container">
         <Reveal as="h2" className={styles.title} delay={0.05}>
-          About Me
+          {t("about.title")}
         </Reveal>
         <Reveal as="p" className={styles.bio} delay={0.1}>
-          I&apos;m Maharavo, a front-end developer &amp; designer based in
-          Madagascar. I craft clean, responsive interfaces that balance
-          aesthetics with performance — turning ideas into websites that look
-          great and work flawlessly on every device.
+          {t("about.bio")}
         </Reveal>
 
-        <div className={styles.approachTitle}>My Approach</div>
+        <div className={styles.approachTitle}>{t("about.approach")}</div>
         <div className={styles.approachWrap}>
-          {steps.map((s, i) => (
+          {stepsKeys.map((s, i) => (
             <Reveal key={s.num} delay={0.1 * i} className={styles.step}>
               <span className={styles.stepNum}>{s.num}</span>
-              <span>{s.label}</span>
+              <span>{t(s.labelKey)}</span>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={0.2}>
           <div className={styles.metrics}>
-            {metrics.map((m) => (
-              <div key={m.label} className={styles.metric}>
+            {metricsKeys.map((m) => (
+              <div key={m.labelKey} className={styles.metric}>
                 <strong>{m.value}</strong>
-                <span>{m.label}</span>
+                <span>{t(m.labelKey)}</span>
               </div>
             ))}
           </div>

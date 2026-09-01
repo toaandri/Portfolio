@@ -4,5 +4,11 @@ dist-types
 .git
 .gitignore
 *.md
+*.tsbuildinfo
 .vscode
 .idea
+.env.local
+*.png
+*.jpg
+*.jpeg
+*.pdf

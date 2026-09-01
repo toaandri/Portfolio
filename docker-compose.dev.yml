@@ -1,0 +1,22 @@
+services:
+  portfolio-dev:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev"
+    environment:
+      - VITE_GITHUB_USER=${VITE_GITHUB_USER:-toaandri}
+      - VITE_GITHUB_TOKEN=${VITE_GITHUB_TOKEN:-}
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5173/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  node_modules:

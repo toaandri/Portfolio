@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
+import { useLanguage } from "../lib/LanguageContext";
 import styles from "./Navbar.module.css";
 
 interface NavbarProps {
@@ -8,16 +9,17 @@ interface NavbarProps {
 }
 
 const navItems = [
-  { label: "Home", href: "#top" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  { key: "nav.home", href: "#top" },
+  { key: "nav.services", href: "#services" },
+  { key: "nav.about", href: "#about" },
+  { key: "nav.skills", href: "#skills" },
+  { key: "nav.projects", href: "#projects" },
 ];
 
 export function Navbar(_props: NavbarProps) {
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll();
+  const { t } = useLanguage();
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 28,
@@ -80,13 +82,13 @@ export function Navbar(_props: NavbarProps) {
       <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
         <div className={styles.inner}>
           <div className={styles.links}>
-            {navItems.map(({ label, href }) => (
+            {navItems.map(({ key, href }) => (
               <a key={href} href={href} className={styles.link}>
-                {label}
+                {t(key)}
               </a>
             ))}
             <a href="#contact" className={styles.ctaButton}>
-              Let&apos;s Talk
+              {t("nav.talk")}
             </a>
           </div>
 
@@ -114,13 +116,13 @@ export function Navbar(_props: NavbarProps) {
         role="dialog"
         aria-label="Mobile navigation"
       >
-        {navItems.map(({ label, href }) => (
+        {navItems.map(({ key, href }) => (
           <a key={href} href={href} className={styles.link} onClick={closeMenu}>
-            {label}
+            {t(key)}
           </a>
         ))}
         <a href="#contact" className={styles.ctaButton} onClick={closeMenu}>
-          Let&apos;s Talk
+          {t("nav.talk")}
         </a>
       </div>
     </>

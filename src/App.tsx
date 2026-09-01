@@ -1,6 +1,8 @@
 import { useGitHub } from "./hooks/useGitHub";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
+import { LanguageProvider, useLanguage } from "./lib/LanguageContext";
 import { Navbar } from "./components/Navbar";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
 import { About } from "./components/About";
@@ -11,14 +13,24 @@ import { Skeleton, LoadingBar } from "./components/Skeleton";
 import styles from "./components/Footer.module.css";
 
 function Footer() {
+  const { t } = useLanguage();
+  const year = new Date().getFullYear();
   return (
     <footer className={`container ${styles.footer}`}>
-      <span>© {new Date().getFullYear()} Maharavo · Front-End Developer</span>
+      <span>{t("footer.rights", { year })}</span>
     </footer>
   );
 }
 
 export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
+}
+
+function AppContent() {
   useSmoothScroll();
   const { data, loading, error, progress } = useGitHub();
 
@@ -28,6 +40,7 @@ export default function App() {
         Skip to content
       </a>
 
+      <LanguageSwitcher />
       <Navbar />
       {loading && !data && <LoadingBar progress={progress} />}
       {loading && !data && <Skeleton />}
@@ -48,7 +61,7 @@ export default function App() {
 
       {data && (
         <main id="main-content">
-          <Hero portrait={data.user.avatar_url} />
+          <Hero portrait="/assets/images/profile-photo.png" />
           <Services />
           <About />
           <Skills />

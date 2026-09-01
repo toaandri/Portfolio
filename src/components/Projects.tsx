@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import type { GitHubRepo } from "../lib/github";
+import { useLanguage } from "../lib/LanguageContext";
 import { RepoCard } from "./RepoCard";
 import { Reveal } from "./Reveal";
 import { StickyStack } from "./StickyStack";
@@ -11,9 +12,13 @@ interface ProjectsProps {
 }
 
 export function Projects({ repos }: ProjectsProps) {
+  const { t } = useLanguage();
+
   const languages = useMemo(() => {
     const set = new Set<string>();
     repos.forEach((r) => r.language && set.add(r.language));
+    const extra = ["Python", "Java", "PHP", "SQL"];
+    extra.forEach((l) => set.add(l));
     return ["All", ...[...set].sort()];
   }, [repos]);
 
@@ -37,11 +42,10 @@ export function Projects({ repos }: ProjectsProps) {
     <section className="section" id="projects">
       <div className="container">
         <Reveal as="h2" className="section-title" delay={0.05}>
-          Selected repositories.
+          {t("projects.title")}
         </Reveal>
         <Reveal as="p" className="section-sub" delay={0.1}>
-          Pulled live from GitHub — {repos.length} repositories, refreshed
-          automatically.
+          {t("projects.subtitle")}
         </Reveal>
 
         <div className={styles.filterWrap} ref={filterRef}>
@@ -69,7 +73,7 @@ export function Projects({ repos }: ProjectsProps) {
 
         {topRepos.length === 0 && (
           <p style={{ color: "var(--text-faint)" }}>
-            No repositories in this language yet.
+            {t("projects.empty")}
           </p>
         )}
 

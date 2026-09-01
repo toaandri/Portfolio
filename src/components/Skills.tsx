@@ -1,45 +1,56 @@
 import { Reveal } from "./Reveal";
+import { useLanguage } from "../lib/LanguageContext";
 import styles from "./Skills.module.css";
 
-const groups = [
+const groupsKeys = [
   {
-    title: "Core Skills",
-    items: ["UI/UX Layout", "Frontend Dev", "Responsive Web Design", "Component-Based Design"],
+    titleKey: "skills.languages",
+    items: ["TypeScript", "JavaScript", "Java", "Python", "PHP", "SQL"],
   },
   {
-    title: "Frontend Tech",
-    items: ["HTML", "CSS", "JS", "React", "TypeScript"],
+    titleKey: "skills.spokenLanguages",
+    items: ["Malagasy", "English", "French"],
   },
   {
-    title: "Design Tools",
-    items: ["Figma", "Photoshop", "Illustrator"],
+    titleKey: "skills.frontend",
+    items: ["React", "React Native", "HTML5", "CSS3", "Tailwind CSS", "Styled Components"],
   },
   {
-    title: "Tools & Interaction",
-    items: ["GitHub", "Netlify", "GSAP", "UI Interactions"],
+    titleKey: "skills.backend",
+    items: ["Node.js", "NestJS", "Express", "GraphQL", "Socket.io", "REST APIs"],
   },
   {
-    title: "Languages",
-    items: ["Malagasy", "Français", "English"],
+    titleKey: "skills.databases",
+    items: ["PostgreSQL", "MongoDB", "Redis", "Firebase", "Supabase"],
+  },
+  {
+    titleKey: "skills.devops",
+    items: ["Docker", "Kubernetes", "AWS", "Vercel", "Git", "GitHub Actions"],
+  },
+  {
+    titleKey: "skills.testing",
+    items: ["Jest", "Vitest", "Cypress", "Playwright"],
   },
 ];
 
 export function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section className="section" id="skills">
       <div className="container">
         <Reveal as="h2" className={styles.title} delay={0.05}>
-          Skills
+          {t("skills.title")}
         </Reveal>
         <Reveal as="p" className={styles.subtitle} delay={0.1}>
-          Crafting seamless UI/UX and clean code
+          {t("skills.subtitle")}
         </Reveal>
 
         <div className={styles.grid}>
-          {groups.map((g, i) => (
-            <Reveal key={g.title} delay={0.08 * (i % 4)} className={styles.cardWrap}>
+          {groupsKeys.map((g, i) => (
+            <Reveal key={g.titleKey} delay={0.08 * (i % 4)} className={styles.cardWrap}>
               <div className={styles.card}>
-                <h3 className={styles.cardTitle}>{g.title}</h3>
+                <h3 className={styles.cardTitle}>{t(g.titleKey)}</h3>
                 <div className={styles.chips}>
                   {g.items.map((item) => (
                     <span key={item} className={styles.chip}>

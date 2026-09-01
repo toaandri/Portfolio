@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
-import { GitHubIcon, LinkedinIcon } from "./icons";
+import { GitHubIcon } from "./icons";
+import { useLanguage } from "../lib/LanguageContext";
 import styles from "./Hero.module.css";
 
 const socials = [
   { label: "GitHub", href: "https://github.com/toaandri", Icon: GitHubIcon },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/maharavo-andrianarijery-87abb4348/",
-    Icon: LinkedinIcon,
-  },
 ];
 
 const container = {
@@ -22,6 +18,8 @@ const item = {
 };
 
 export function Hero({ portrait }: { portrait: string }) {
+  const { t } = useLanguage();
+
   return (
     <header className={styles.hero} id="top">
       <div className="container">
@@ -32,19 +30,18 @@ export function Hero({ portrait }: { portrait: string }) {
           animate="show"
         >
           <motion.div variants={item} className={styles.copyCol}>
-            <p className={styles.greeting}>I am Maharavo</p>
+            <p className={styles.greeting}>{t("hero.greeting")}</p>
             <h1 className={styles.title}>
-              <span>Front-End</span>
-              <span>Developer &amp; Designer</span>
+              <span>{t("hero.title1")}</span>
+              <span>{t("hero.title2")}</span>
             </h1>
             <p className={styles.lead}>
-              Blending thoughtful UI design with clean, responsive development to create
-              websites that look great and perform flawlessly.
+              {t("hero.lead")}
             </p>
 
             <div className={styles.actions}>
-              <a href="#contact" className={styles.downloadBtn}>
-                Download CV
+              <a href="/Maharavo_CV.pdf" download className={styles.downloadBtn}>
+                {t("hero.cv")}
               </a>
             </div>
 

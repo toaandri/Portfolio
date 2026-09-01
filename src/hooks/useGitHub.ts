@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchGitHubData, type GitHubData } from "../lib/github";
-import { getMockGitHubData } from "../lib/mockGitHubData";
 
 const AUTO_REFRESH_MS = 5 * 60 * 1000;
-const USE_MOCK = import.meta.env.VITE_USE_MOCK_DATA === "true";
 
 export function useGitHub() {
   const [data, setData] = useState<GitHubData | null>(null);
@@ -19,13 +17,6 @@ export function useGitHub() {
     setLoading(true);
     setError(null);
     setProgress(0);
-
-    if (USE_MOCK) {
-      setProgress(100);
-      setData(getMockGitHubData());
-      setLoading(false);
-      return;
-    }
 
     fetchGitHubData((loaded, total) => {
       setProgress(total ? Math.round((loaded / total) * 100) : 0);
@@ -45,13 +36,11 @@ export function useGitHub() {
 
   useEffect(() => {
     load();
-    if (!USE_MOCK) {
-      const id = setInterval(load, AUTO_REFRESH_MS);
-      return () => {
-        clearInterval(id);
-        abortRef.current?.abort();
-      };
-    }
+    const id = setInterval(load, AUTO_REFRESH_MS);
+    return () => {
+      clearInterval(id);
+      abortRef.current?.abort();
+    };
   }, [load]);
 
   return {

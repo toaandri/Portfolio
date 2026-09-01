@@ -48,6 +48,7 @@ export interface GitHubData {
 }
 
 const USERNAME = import.meta.env.VITE_GITHUB_USER || "toaandri";
+const TOKEN = import.meta.env.VITE_GITHUB_TOKEN || "";
 const CACHE_KEY = `github_cache_${USERNAME}`;
 const CACHE_TTL = 5 * 60 * 1000;
 
@@ -104,10 +105,13 @@ function setCache(data: GitHubData): void {
 }
 
 async function fetchJSON<T>(url: string, signal?: AbortSignal): Promise<T> {
-  const res = await fetch(url, {
-    headers: { Accept: "application/vnd.github+json" },
-    signal,
-  });
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+  };
+  if (TOKEN) {
+    headers.Authorization = `Bearer ${TOKEN}`;
+  }
+  const res = await fetch(url, { headers, signal });
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
   return res.json() as Promise<T>;
 }
