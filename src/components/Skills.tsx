@@ -5,7 +5,7 @@ import styles from "./Skills.module.css";
 const groupsKeys = [
   {
     titleKey: "skills.languages",
-    items: ["TypeScript", "JavaScript", "Java", "Python", "PHP", "SQL"],
+    items: ["TypeScript", "JavaScript", "Python", "Java", "PHP", "C#", "Go", "Rust", "Ruby", "Kotlin", "Swift", "Dart", "C", "C++", "SQL"],
   },
   {
     titleKey: "skills.spokenLanguages",
@@ -13,23 +13,55 @@ const groupsKeys = [
   },
   {
     titleKey: "skills.frontend",
-    items: ["React", "React Native", "HTML5", "CSS3", "Tailwind CSS", "Styled Components"],
+    items: ["React", "Vue.js", "Angular", "Svelte", "SolidJS", "Lit", "HTML5", "CSS3"],
+  },
+  {
+    titleKey: "skills.frontendFrameworks",
+    items: ["Next.js", "Nuxt", "SvelteKit", "Astro", "Remix", "Gatsby", "Qwik", "Vite", "Webpack"],
+  },
+  {
+    titleKey: "skills.ui",
+    items: ["Tailwind CSS", "Bootstrap", "Sass", "Less", "CSS Modules", "Styled Components", "Material UI", "Chakra UI", "shadcn/ui", "Radix UI"],
   },
   {
     titleKey: "skills.backend",
-    items: ["Node.js", "NestJS", "Express", "GraphQL", "Socket.io", "REST APIs"],
+    items: ["Node.js", "Bun", "NestJS", "Express", "Fastify", "Koa", "Hono", "GraphQL", "Apollo", "Socket.io", "REST APIs", "WebSockets"],
+  },
+  {
+    titleKey: "skills.backendFrameworks",
+    items: ["Spring Boot", "Spring", "Quarkus", "Django", "FastAPI", "Flask", "Symfony", "Laravel", "CodeIgniter", "ASP.NET Core", "Ruby on Rails", "Phoenix"],
+  },
+  {
+    titleKey: "skills.cms",
+    items: ["WordPress", "Strapi", "Contentful", "Directus", "Sanity", "Payload CMS"],
+  },
+  {
+    titleKey: "skills.mobile",
+    items: ["React Native", "Expo", "Flutter", "Ionic", "Android", "Jetpack Compose", "SwiftUI", "Progressive Web Apps"],
   },
   {
     titleKey: "skills.databases",
-    items: ["PostgreSQL", "MongoDB", "Redis", "Firebase", "Supabase"],
+    items: ["PostgreSQL", "MySQL", "MariaDB", "SQLite", "MongoDB", "Redis", "Elasticsearch", "Cassandra", "DynamoDB", "Firebase", "Supabase"],
+  },
+  {
+    titleKey: "skills.dataAi",
+    items: ["Pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "Jupyter", "OpenAI API", "LangChain"],
   },
   {
     titleKey: "skills.devops",
-    items: ["Docker", "Kubernetes", "AWS", "Vercel", "Git", "GitHub Actions"],
+    items: ["Docker", "Kubernetes", "Terraform", "Ansible", "AWS", "Azure", "Google Cloud", "Vercel", "Netlify", "Cloudflare", "Nginx", "Linux", "CI/CD"],
   },
   {
     titleKey: "skills.testing",
-    items: ["Jest", "Vitest", "Cypress", "Playwright"],
+    items: ["Jest", "Vitest", "Cypress", "Playwright", "Testing Library", "JUnit", "Pytest", "Selenium", "PHPUnit"],
+  },
+  {
+    titleKey: "skills.architecture",
+    items: ["Microservices", "Serverless", "Domain-Driven Design", "Clean Architecture", "MVC", "Event-Driven Architecture", "Design Patterns"],
+  },
+  {
+    titleKey: "skills.tools",
+    items: ["Git", "GitHub", "GitLab", "Bitbucket", "Postman", "Insomnia", "Figma", "npm", "pnpm", "Yarn", "Bun", "Babel", "ESLint", "Prettier", "Storybook"],
   },
 ];
 
